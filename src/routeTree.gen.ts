@@ -9,12 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TestRouteImport } from './routes/test'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as WorkRouteRouteImport } from './routes/work/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WorkTextRouteImport } from './routes/work/text'
 
-const TestRoute = TestRouteImport.update({
-  id: '/test',
-  path: '/test',
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkRouteRoute = WorkRouteRouteImport.update({
+  id: '/work',
+  path: '/work',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -22,40 +29,59 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkTextRoute = WorkTextRouteImport.update({
+  id: '/text',
+  path: '/text',
+  getParentRoute: () => WorkRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/test': typeof TestRoute
+  '/work': typeof WorkRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/work/text': typeof WorkTextRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/test': typeof TestRoute
+  '/work': typeof WorkRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/work/text': typeof WorkTextRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/test': typeof TestRoute
+  '/work': typeof WorkRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/work/text': typeof WorkTextRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/test'
+  fullPaths: '/' | '/work' | '/about' | '/work/text'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/test'
-  id: '__root__' | '/' | '/test'
+  to: '/' | '/work' | '/about' | '/work/text'
+  id: '__root__' | '/' | '/work' | '/about' | '/work/text'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  TestRoute: typeof TestRoute
+  WorkRouteRoute: typeof WorkRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/test': {
-      id: '/test'
-      path: '/test'
-      fullPath: '/test'
-      preLoaderRoute: typeof TestRouteImport
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work': {
+      id: '/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof WorkRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -65,12 +91,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/text': {
+      id: '/work/text'
+      path: '/text'
+      fullPath: '/work/text'
+      preLoaderRoute: typeof WorkTextRouteImport
+      parentRoute: typeof WorkRouteRoute
+    }
   }
 }
 
+interface WorkRouteRouteChildren {
+  WorkTextRoute: typeof WorkTextRoute
+}
+
+const WorkRouteRouteChildren: WorkRouteRouteChildren = {
+  WorkTextRoute: WorkTextRoute,
+}
+
+const WorkRouteRouteWithChildren = WorkRouteRoute._addFileChildren(
+  WorkRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  TestRoute: TestRoute,
+  WorkRouteRoute: WorkRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
