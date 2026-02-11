@@ -6,7 +6,7 @@ import { Home, Menu, X } from 'lucide-react'
 export default function Header() {
   return (
     <header>
-      <nav className="p-4 flex items-center justify-end gap-4 border">
+      <nav className="p-4 flex items-center justify-end gap-4 ascii-border ascii-text">
         <Link to="/work">work</Link>
         <Link to="/about">about</Link>
       </nav>

@@ -7,6 +7,7 @@ import { routeTree } from './routeTree.gen'
 
 import './styles.css'
 import reportWebVitals from './reportWebVitals.ts'
+import { ASCIIProvider } from 'html-to-ascii'
 
 // Create a new router instance
 const router = createRouter({
