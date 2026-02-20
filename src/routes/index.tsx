@@ -66,7 +66,7 @@ function generateRects(grid: ReturnType<typeof useGridContext>): cardProps[] {
 
   let protection = 0
 
-  while (baseRects.length > 0 && protection < 10000) {
+  while (baseRects.length > 0) {
     protection++
     const rect = baseRects.pop()!
 
@@ -113,7 +113,7 @@ function generateRects(grid: ReturnType<typeof useGridContext>): cardProps[] {
       }
     }
 
-    if (!overlap) placed.push(rect)
+    if (!overlap || protection > 10000) placed.push(rect)
     else baseRects.unshift(rect)
   }
 
@@ -124,24 +124,15 @@ function App() {
   const grid = useGridContext()
   const [rects, setRects] = useState<cardProps[]>([])
 
-  // function to regenerate snapped, non-overlapping rectangles
   const updateRects = () => {
     if (!grid.windowWidth || !grid.windowHeight) return
     const newRects = generateRects(grid)
     setRects(newRects)
   }
 
-  // initial generate
   useEffect(() => {
     updateRects()
-  }, [grid.windowWidth, grid.windowHeight]) // also runs when grid dimensions are ready
-
-  // update on window resize
-  useEffect(() => {
-    const handler = () => updateRects()
-    window.addEventListener('resize', handler)
-    return () => window.removeEventListener('resize', handler)
-  }, [])
+  }, [grid.windowWidth, grid.windowHeight])
 
   const resumeProps = rects.find((r) => r.name === 'resume.txt')
   const aboutProps = rects.find((r) => r.name === 'me.txt')
