@@ -37,14 +37,14 @@ export default function LinkCard({
         }}
       >
         <strong className="pointer-events-auto cursor-grab react-draggable-dragging:cursor-grabbing">
-          <div className="w-full h-8 ascii ascii-border-b whitespace-pre flex justify-end px-4 space-x-2">
-            <div className="absolute left-4">{name}</div>
+          <div className="w-full h-8 ascii ascii-border-b whitespace-pre flex justify-end px-2 space-x-2">
+            <div className="absolute left-5">{name}</div>
             <div>-</div>
             <div>□</div>
             <div>×</div>
           </div>
         </strong>
-        <div className="absolute whitespace-pre pl-4 top-4">{children}</div>
+        <div className="absolute whitespace-pre pl-5 top-4">{children}</div>
       </div>
     </Draggable>
   )

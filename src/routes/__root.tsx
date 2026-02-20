@@ -10,8 +10,7 @@ export const Route = createRootRoute({
   component: () => (
     <>
       <ASCIIProvider>
-        <ASCII revealSpeed={60}>
-          {/* <Header /> */}
+        <ASCII>
           <Footer />
           <Outlet />
         </ASCII>

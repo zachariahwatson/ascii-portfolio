@@ -1,7 +1,7 @@
 import LinkCard from '@/components/LinkCard'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useGridContext } from 'html-to-ascii'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const Route = createFileRoute('/')({
   component: App,
@@ -30,32 +30,92 @@ function rectRect(
   )
 }
 
-function generateRects(grid: ReturnType<typeof useGridContext>): cardProps[] {
+function generateRects(
+  grid: ReturnType<typeof useGridContext>,
+  areaWidth: number,
+  logoHeight: number,
+): cardProps[] {
   const baseRects: cardProps[] = [
     {
-      width: grid.fontWidth * 32,
-      height: grid.fontHeight * 17,
+      width:
+        grid.windowWidth >= 1440
+          ? grid.fontWidth * 32
+          : grid.windowWidth >= 1280
+            ? grid.fontWidth * 29
+            : grid.windowWidth >= 768
+              ? grid.fontWidth * 26
+              : grid.fontWidth * 16,
+      height:
+        grid.windowWidth >= 1440
+          ? grid.fontHeight * 17
+          : grid.windowWidth >= 1280
+            ? grid.fontHeight * 16
+            : grid.windowWidth >= 768
+              ? grid.fontHeight * 14
+              : grid.fontHeight * 10,
       x: 0,
       y: 0,
-      name: 'resume.txt',
+      name: 'cv.txt',
     },
     {
-      width: grid.fontWidth * 23,
-      height: grid.fontHeight * 14,
+      width:
+        grid.windowWidth >= 1440
+          ? grid.fontWidth * 22
+          : grid.windowWidth >= 1280
+            ? grid.fontWidth * 20
+            : grid.windowWidth >= 768
+              ? grid.fontWidth * 18
+              : grid.fontWidth * 12,
+      height:
+        grid.windowWidth >= 1440
+          ? grid.fontHeight * 14
+          : grid.windowWidth >= 1280
+            ? grid.fontHeight * 14
+            : grid.windowWidth >= 768
+              ? grid.fontHeight * 13
+              : grid.fontHeight * 9,
       x: 0,
       y: 0,
-      name: 'me.txt',
+      name: grid.windowWidth >= 768 ? 'me.txt' : 'me..',
     },
     {
-      width: grid.fontWidth * 29,
-      height: grid.fontHeight * 14,
+      width:
+        grid.windowWidth >= 1440
+          ? grid.fontWidth * 31
+          : grid.windowWidth >= 1280
+            ? grid.fontWidth * 29
+            : grid.windowWidth >= 768
+              ? grid.fontWidth * 25
+              : grid.fontWidth * 20,
+      height:
+        grid.windowWidth >= 1440
+          ? grid.fontHeight * 14
+          : grid.windowWidth >= 1280
+            ? grid.fontHeight * 13
+            : grid.windowWidth >= 768
+              ? grid.fontHeight * 12
+              : grid.fontHeight * 9,
       x: 0,
       y: 0,
       name: 'art.txt',
     },
     {
-      width: grid.fontWidth * 33,
-      height: grid.fontHeight * 16,
+      width:
+        grid.windowWidth >= 1440
+          ? grid.fontWidth * 32
+          : grid.windowWidth >= 1280
+            ? grid.fontWidth * 29
+            : grid.windowWidth >= 768
+              ? grid.fontWidth * 23
+              : grid.fontWidth * 18,
+      height:
+        grid.windowWidth >= 1440
+          ? grid.fontHeight * 16
+          : grid.windowWidth >= 1280
+            ? grid.fontHeight * 15
+            : grid.windowWidth >= 768
+              ? grid.fontHeight * 12
+              : grid.fontHeight * 9,
       x: 0,
       y: 0,
       name: 'work.txt',
@@ -66,34 +126,38 @@ function generateRects(grid: ReturnType<typeof useGridContext>): cardProps[] {
 
   let protection = 0
 
+  let areaHeight = Math.min(
+    568,
+    grid.windowHeight - logoHeight - grid.fontHeight,
+  )
+
   while (baseRects.length > 0) {
     protection++
     const rect = baseRects.pop()!
 
     let randX =
-      Math.random() * (1200 - rect.width) + (grid.windowWidth / 2 - 600)
-    let randY =
-      Math.random() * (600 - rect.height) +
-      250 /*+ (grid.windowHeight / 2 - 300)*/
+      Math.random() * (areaWidth - rect.width) +
+      (grid.windowWidth / 2 - areaWidth / 2)
+    let randY = Math.random() * (areaHeight - rect.height) + logoHeight
 
     rect.x = Math.round(randX / grid.fontWidth) * grid.fontWidth
     rect.y = Math.round(randY / grid.fontHeight) * grid.fontHeight
 
     const checkRect = {
-      x: rect.x + rect.width / 6,
-      y: rect.y + rect.height / 6,
-      width: rect.width - rect.width / 3,
-      height: rect.height - rect.height / 3,
+      x: rect.x + rect.width / 8,
+      y: rect.y + rect.height / 8,
+      width: rect.width - rect.width / 4,
+      height: rect.height - rect.height / 4,
     }
 
     let overlap = false
 
     for (const other of placed) {
       const otherCheck = {
-        x: other.x + other.width / 6,
-        y: other.y + other.height / 6,
-        width: other.width - other.width / 3,
-        height: other.height - other.height / 3,
+        x: other.x + other.width / 8,
+        y: other.y + other.height / 8,
+        width: other.width - other.width / 4,
+        height: other.height - other.height / 4,
       }
 
       if (
@@ -123,27 +187,81 @@ function generateRects(grid: ReturnType<typeof useGridContext>): cardProps[] {
 function App() {
   const grid = useGridContext()
   const [rects, setRects] = useState<cardProps[]>([])
+  const [borderX, setBorderX] = useState(0)
+  const [borderY, setBorderY] = useState(0)
 
   const updateRects = () => {
     if (!grid.windowWidth || !grid.windowHeight) return
-    const newRects = generateRects(grid)
+    let areaWidth = 0
+
+    if (grid.windowWidth >= 1440) {
+      areaWidth = 1440
+    } else if (grid.windowWidth >= 1280) {
+      areaWidth = 1280
+    } else if (grid.windowWidth >= 1024) {
+      areaWidth = 1024
+    } else if (grid.windowWidth >= 768) {
+      areaWidth = 768
+    } else if (grid.windowWidth >= 640) {
+      areaWidth = 640
+    }
+
+    let logoHeight = 0
+
+    if (grid.windowWidth >= 1280) {
+      logoHeight = 256 + grid.fontHeight * 3
+    } else if (grid.windowWidth >= 768) {
+      logoHeight = 192 + grid.fontHeight * 3
+    } else {
+      logoHeight = 128 + grid.fontHeight * 3
+    }
+
+    setBorderX(grid.windowWidth / 2 - areaWidth / 2)
+    setBorderY(logoHeight - grid.fontHeight)
+
+    const newRects = generateRects(grid, areaWidth, logoHeight)
     setRects(newRects)
   }
 
   useEffect(() => {
-    updateRects()
+    const handleResize = () => {
+      updateRects()
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    if (grid.windowWidth && grid.windowHeight) {
+      updateRects()
+    }
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
   }, [grid.windowWidth, grid.windowHeight])
 
-  const resumeProps = rects.find((r) => r.name === 'resume.txt')
-  const aboutProps = rects.find((r) => r.name === 'me.txt')
-  const artProps = rects.find((r) => r.name === 'art.txt')
-  const workProps = rects.find((r) => r.name === 'work.txt')
+  const resumeProps = rects.find((r) => r.name.startsWith('cv'))
+  const aboutProps = rects.find((r) => r.name.startsWith('me'))
+  const artProps = rects.find((r) => r.name.startsWith('art'))
+  const workProps = rects.find((r) => r.name.startsWith('work'))
 
   return (
     <>
+      {/* <div
+        className="2xl:w-384 xl:w-7xl lg:w-5xl w-3xl h-full ascii-border-l ascii-l-( ascii-border-r ascii-r-)  ascii-no-fill absolute top-0"
+        style={{ left: borderX }}
+      /> */}
+      <div
+        className="w-full ascii-border-b ascii-b-_ ascii-no-fill absolute"
+        style={{ top: borderY - grid.fontHeight }}
+      />
+      <div
+        className="w-full ascii-border-b ascii-b-ᴗ ascii-no-fill absolute"
+        style={{ top: borderY }}
+      />
       <div className="flex justify-center w-full absolute top-0 left-0">
-        <div className="whitespace-pre ascii-text">
-          {String.raw`                                                          
+        <div className="whitespace-pre ascii-text ascii-no-fill">
+          {grid.windowWidth >= 1280
+            ? String.raw`
       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
      ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
     ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
@@ -158,6 +276,27 @@ function App() {
          ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
         ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
        ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
+      `
+            : grid.windowWidth >= 768
+              ? String.raw`
+    ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
+   ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
+  ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
+ ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
+┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
+         ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
+        ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
+       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
+      ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
+     ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
+      `
+              : String.raw`
+  ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼┼  ┼┼┼┼┼┼
+ ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼┼  ┼┼┼┼┼┼
+┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼┼  ┼┼┼┼┼┼
+     ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼
+    ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼
+   ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼
       `}
         </div>
       </div>
@@ -165,7 +304,8 @@ function App() {
       {resumeProps && (
         <LinkCard {...resumeProps}>
           <Link to="/">
-            {String.raw`
+            {grid.windowWidth >= 1440
+              ? String.raw`
    ______________________
  / \        __  _    _   \
 |   |      /  )' )  /    |
@@ -179,7 +319,43 @@ function App() {
     |  . ~~~~~~~~~~~     |
     |  __________________|__
     \_/____________________/ 
-            `}
+`
+              : grid.windowWidth >= 1280
+                ? String.raw`
+   ____________________
+ / \       __  _    _  \
+|   |     /  )' )  /   |
+ \_ |    /     (  /    |
+    |   (__/    \/     |
+    |                  |
+    | ########         |
+    |  . ~~~~~~~~~~~~  |
+    |  . ~~~~~~~       |
+    | ###### ####      |
+    |  ________________|__
+    \_/__________________/
+`
+                : grid.windowWidth >= 768
+                  ? String.raw`
+   _________________
+ / \     __  _    _ \
+|   |   /  )' )  /  |
+ \_ |  /     (  /   |
+    | (__/    \/    |
+    |               |
+    | ########      |
+    |  . ~~~~~~~~~~ |
+    |  _____________|__
+    \_/_______________/
+`
+                  : String.raw`
+ __________
+/\  _. , _ \
+\| (__ \/  |
+ | . ~~~~~ |
+ | ________|_
+ \/_________/
+`}
           </Link>
         </LinkCard>
       )}
@@ -188,19 +364,52 @@ function App() {
       {aboutProps && (
         <LinkCard {...aboutProps}>
           <Link to="/about">
-            {String.raw`
-       _.--’”\
-      /   ,__.)
-     / -.’   / \
-     |/,=. .=.\|
-     || 6 , 6 ||
-    (q   /_.   p)
-     ,\  ._,  /,
-     /)\     /(\
-       |’...’| 
-  _.''’._ v _.’''._
- /       '''       \
-            `}
+            {grid.windowWidth >= 1440
+              ? String.raw`
+      _.--’”\
+     /   ,__.)
+    / -.’   / \
+    |/,=. .=.\|
+    || 6 , 6 ||
+   (q   /_.   p)
+    ,\  ._,  /,
+    /)\     /(\
+      |’...’| 
+ _.''’._ v _.’''._
+/       '''       \
+`
+              : grid.windowWidth >= 1280
+                ? String.raw`
+     _.--’”\
+    /   ,__.)
+   / -.’   / \
+   |/,=. .=.\|
+   || 6 , 6 ||
+  (q   /_.   p)
+   ,\  ._,  /,
+   /)\     /(\
+     |’...’| 
+_.''’._ . _.’''._
+`
+                : grid.windowWidth >= 768
+                  ? String.raw`
+    .--"'")
+   / ,.-'{ \
+   |/_   _\|
+   | 6 , 6 |
+  (q  /_.  p)
+   ,\ ._, /,
+   /)\___/(\
+   _ |   | _
+.-” ’--.--’ ”-.
+`
+                  : String.raw`
+ .-''").
+ |/"''\|
+ d ^L^ b
+ )\ -'/(
+_.-'-'-._
+`}
           </Link>
         </LinkCard>
       )}
@@ -209,7 +418,8 @@ function App() {
       {artProps && (
         <LinkCard {...artProps}>
           <Link to="/">
-            {String.raw`
+            {grid.windowWidth >= 1440
+              ? String.raw`
              o\
    _________/__\_________
   |       ."_____) ---(  |
@@ -220,7 +430,37 @@ function App() {
   |__/_\-___/_______\_/  |
   | '  , /|\ ^   .  ,  ^ |
   |_____/_|_\____________|
-            `}
+`
+              : grid.windowWidth >= 1280
+                ? String.raw`
+            o\
+   ________/__\________
+  |     ."_____) ---(  |
+ ,'-.              .'"-|
+(____".        ._ '   ||
+  |   _      _/  \   _-|
+  |__/_\.___/_____\_/  |
+  | '  , /|\   .  ,  ^ |
+  |_____/_|_\__________|
+`
+                : grid.windowWidth >= 768
+                  ? String.raw`
+          o\
+  _______/__\_______
+ |__    "--'    --(_|
+(___".       _  .' ||
+ |   _     _/ \   _-|
+ |__/_\___/____\_/  |
+ | '  , /|\  . ,  ^ |
+ |_____/_|_\________|
+`
+                  : String.raw`
+  _____/"\_____
+ |_   "-'   -(_|
+(__".    _. ' '|
+ |_,-___/__\_-.|
+ |____/|\______|
+`}
           </Link>
         </LinkCard>
       )}
@@ -229,21 +469,57 @@ function App() {
       {workProps && (
         <LinkCard {...workProps}>
           <Link to="/work">
-            {String.raw`
-   ________________   _____
-  |.--------------.|/|||||||
-  ||              || |||||||
-  || ~#           || |||||||
-  ||              || |||||||
-  ||______________|| |||||||
-  |______________._| |||||||
-       /__||__   / \ |||||||
-    .-' \____/   \_ \|:::::|
-   _\______________'-.__
-  /:::::::::':::'::\ .\\\---.
- /::::====::::.:.:::\ \\_)   \
- '=================='  '-----'
-            `}
+            {grid.windowWidth >= 1440
+              ? String.raw`
+  ________________   _____
+ |.--------------.|/|||||||
+ ||              || |||||||
+ || ~#           || |||||||
+ ||              || |||||||
+ ||______________|| |||||||
+-|______________._| |||||||--
+      /__||__   / \ |||||||
+   .-' \____/   \_ \|:::::|
+  _\______________'-.__
+ /:::::::::':::'::\ .\\\---.
+/::::====::::.:.:::\ \\_)   \
+'=================='  '-----'
+`
+              : grid.windowWidth >= 1280
+                ? String.raw`
+  ______________   ____
+ |.------------.|/||||||
+ ||            || ||||||
+ || ~#         || ||||||
+ ||____________|| ||||||
+-|____________._| ||||||--
+     /__||__  / \ ||||||
+  .-' \____/  \_ \|::::|
+  _\____________'-.__
+ /::::::::':::':\ .\\\--.
+/:::====::::.:.::\ \\_)  \
+'================'  '----'
+`
+                : grid.windowWidth >= 768
+                  ? String.raw`
+  __________   ___
+ |.--------.|/|||||
+ || ~#     || |||||
+ ||________|| |||||
+-'----,,----' |||||-
+   . (__)  / \|:::|
+  _/________\._
+ /::;;::.:.:\.\)-.
+ '==========' '---'
+`
+                  : String.raw`
+  _______   __
+ |:""""":|/||||
+ ||_____|| ||||
+-'---_---'\|::|-
+ /:;;:.:.\ \D\
+ '"""""""'  "'
+`}
           </Link>
         </LinkCard>
       )}
