@@ -12,6 +12,7 @@ interface cardProps {
   height: number
   x: number
   y: number
+  zIndex: number
   name: string
 }
 
@@ -55,6 +56,7 @@ function generateRects(
               : grid.fontHeight * 10,
       x: 0,
       y: 0,
+      zIndex: 10,
       name: 'cv.txt',
     },
     {
@@ -76,6 +78,7 @@ function generateRects(
               : grid.fontHeight * 9,
       x: 0,
       y: 0,
+      zIndex: 10,
       name: grid.windowWidth >= 768 ? 'me.txt' : 'me..',
     },
     {
@@ -97,6 +100,7 @@ function generateRects(
               : grid.fontHeight * 9,
       x: 0,
       y: 0,
+      zIndex: 10,
       name: 'art.txt',
     },
     {
@@ -118,6 +122,7 @@ function generateRects(
               : grid.fontHeight * 9,
       x: 0,
       y: 0,
+      zIndex: 10,
       name: 'work.txt',
     },
   ]
@@ -187,8 +192,9 @@ function generateRects(
 function App() {
   const grid = useGridContext()
   const [rects, setRects] = useState<cardProps[]>([])
-  const [borderX, setBorderX] = useState(0)
+  //const [borderX, setBorderX] = useState(0)
   const [borderY, setBorderY] = useState(0)
+  const [currentZIndex, setCurrentZIndex] = useState(10)
 
   const updateRects = () => {
     if (!grid.windowWidth || !grid.windowHeight) return
@@ -208,19 +214,46 @@ function App() {
 
     let logoHeight = 0
 
-    if (grid.windowWidth >= 1280) {
+    if (grid.windowWidth >= 1536) {
       logoHeight = 256 + grid.fontHeight * 3
-    } else if (grid.windowWidth >= 768) {
+    } else if (grid.windowWidth >= 1280) {
       logoHeight = 192 + grid.fontHeight * 3
     } else {
       logoHeight = 128 + grid.fontHeight * 3
     }
 
-    setBorderX(grid.windowWidth / 2 - areaWidth / 2)
+    //setBorderX(grid.windowWidth / 2 - areaWidth / 2)
     setBorderY(logoHeight - grid.fontHeight)
 
-    const newRects = generateRects(grid, areaWidth, logoHeight)
-    setRects(newRects)
+    const stored = sessionStorage.getItem('rects')
+
+    if (!stored) {
+      const newRects = generateRects(grid, areaWidth, logoHeight)
+      setRects(newRects)
+
+      sessionStorage.setItem('rects', JSON.stringify(newRects))
+    } else {
+      setRects(JSON.parse(stored))
+    }
+  }
+
+  const moveRect = (name: string, x: number, y: number) => {
+    const updatedRects = rects.map((rect) =>
+      rect.name === name ? { ...rect, x, y } : rect,
+    )
+    setRects(updatedRects)
+    sessionStorage.setItem('rects', JSON.stringify(updatedRects))
+  }
+
+  const updateZIndex = (name: string) => {
+    console.log('updating')
+    const updatedZIndex = currentZIndex + 1
+    const updatedRects = rects.map((rect) =>
+      rect.name === name ? { ...rect, zIndex: updatedZIndex } : rect,
+    )
+    setCurrentZIndex(updatedZIndex)
+    setRects(updatedRects)
+    sessionStorage.setItem('rects', JSON.stringify(updatedRects))
   }
 
   useEffect(() => {
@@ -239,10 +272,225 @@ function App() {
     }
   }, [grid.windowWidth, grid.windowHeight])
 
-  const resumeProps = rects.find((r) => r.name.startsWith('cv'))
-  const aboutProps = rects.find((r) => r.name.startsWith('me'))
-  const artProps = rects.find((r) => r.name.startsWith('art'))
-  const workProps = rects.find((r) => r.name.startsWith('work'))
+  // const resumeProps = rects.find((r) => r.name.startsWith('cv'))
+  // const aboutProps = rects.find((r) => r.name.startsWith('me'))
+  // const artProps = rects.find((r) => r.name.startsWith('art'))
+  // const workProps = rects.find((r) => r.name.startsWith('work'))
+
+  const cardData = [
+    {
+      name: 'cv',
+      to: '/',
+      content:
+        grid.windowWidth >= 1440
+          ? String.raw`
+   ______________________
+ / \        __  _    _   \
+|   |      /  )' )  /    |
+ \_ |     /     (  /     |
+    |    (__/    \/      |
+    |                    |
+    | ########           |
+    |  . ~~~~~~~~~~~~~~~ |
+    |  . ~~~~~~~         |
+    | ###### ####        |
+    |  . ~~~~~~~~~~~     |
+    |  __________________|__
+    \_/____________________/ 
+`
+          : grid.windowWidth >= 1280
+            ? String.raw`
+   ____________________
+ / \       __  _    _  \
+|   |     /  )' )  /   |
+ \_ |    /     (  /    |
+    |   (__/    \/     |
+    |                  |
+    | ########         |
+    |  . ~~~~~~~~~~~~  |
+    |  . ~~~~~~~       |
+    | ###### ####      |
+    |  ________________|__
+    \_/__________________/
+`
+            : grid.windowWidth >= 768
+              ? String.raw`
+   _________________
+ / \     __  _    _ \
+|   |   /  )' )  /  |
+ \_ |  /     (  /   |
+    | (__/    \/    |
+    |               |
+    | ########      |
+    |  . ~~~~~~~~~~ |
+    |  _____________|__
+    \_/_______________/
+`
+              : String.raw`
+ __________
+/\  _. , _ \
+\| (__ \/  |
+ | . ~~~~~ |
+ | ________|_
+ \/_________/
+`,
+    },
+    {
+      name: 'me',
+      to: '/about',
+      content:
+        grid.windowWidth >= 1440
+          ? String.raw`
+      _.--’”\
+     /   ,__.)
+    / -.’   / \
+    |/,=. .=.\|
+    || 6 , 6 ||
+   (q   /_.   p)
+    ,\  ._,  /,
+    /)\     /(\
+      |’...’| 
+ _.''’._ v _.’''._
+/       '''       \
+`
+          : grid.windowWidth >= 1280
+            ? String.raw`
+     _.--’”\
+    /   ,__.)
+   / -.’   / \
+   |/,=. .=.\|
+   || 6 , 6 ||
+  (q   /_.   p)
+   ,\  ._,  /,
+   /)\     /(\
+     |’...’| 
+_.''’._ . _.’''._
+`
+            : grid.windowWidth >= 768
+              ? String.raw`
+    .--"'")
+   / ,.-'{ \
+   |/_   _\|
+   | 6 , 6 |
+  (q  /_.  p)
+   ,\ ._, /,
+   /)\___/(\
+   _ |   | _
+.-” ’--.--’ ”-.
+`
+              : String.raw`
+ .-''").
+ |/"''\|
+ d ^L^ b
+ )\ -'/(
+_.-'-'-._
+`,
+    },
+    {
+      name: 'art',
+      to: '/',
+      content:
+        grid.windowWidth >= 1440
+          ? String.raw`
+             o\
+   _________/__\_________
+  |       ."_____) ---(  |
+ ,'-._               .'"-|
+(_____".            '   ||
+  |            _.-.      |
+  |   _      _/ /  \   _-|
+  |__/_\-___/_______\_/  |
+  | '  , /|\ ^   .  ,  ^ |
+  |_____/_|_\____________|
+`
+          : grid.windowWidth >= 1280
+            ? String.raw`
+            o\
+   ________/__\________
+  |     ."_____) ---(  |
+ ,'-.              .'"-|
+(____".        ._ '   ||
+  |   _      _/  \   _-|
+  |__/_\.___/_____\_/  |
+  | '  , /|\   .  ,  ^ |
+  |_____/_|_\__________|
+`
+            : grid.windowWidth >= 768
+              ? String.raw`
+          o\
+  _______/__\_______
+ |__    "--'    --(_|
+(___".       _  .' ||
+ |   _     _/ \   _-|
+ |__/_\___/____\_/  |
+ | '  , /|\  . ,  ^ |
+ |_____/_|_\________|
+`
+              : String.raw`
+  _____/"\_____
+ |_   "-'   -(_|
+(__".    _. ' '|
+ |_,-___/__\_-.|
+ |____/|\______|
+`,
+    },
+    {
+      name: 'work',
+      to: '/work',
+      content:
+        grid.windowWidth >= 1440
+          ? String.raw`
+  ________________   _____
+ |.--------------.|/|||||||
+ ||              || |||||||
+ || ~#           || |||||||
+ ||              || |||||||
+ ||______________|| |||||||
+-|______________._| |||||||--
+      /__||__   / \ |||||||
+   .-' \____/   \_ \|:::::|
+  _\______________'-.__
+ /:::::::::':::'::\ .\\\---.
+/::::====::::.:.:::\ \\_)   \
+'=================='  '-----'
+`
+          : grid.windowWidth >= 1280
+            ? String.raw`
+  ______________   ____
+ |.------------.|/||||||
+ ||            || ||||||
+ || ~#         || ||||||
+ ||____________|| ||||||
+-|____________._| ||||||--
+     /__||__  / \ ||||||
+  .-' \____/  \_ \|::::|
+  _\____________'-.__
+ /::::::::':::':\ .\\\--.
+/:::====::::.:.::\ \\_)  \
+'================'  '----'
+`
+            : grid.windowWidth >= 768
+              ? String.raw`
+  __________   ___
+ |.--------.|/|||||
+ || ~#     || |||||
+ ||________|| |||||
+-'----,,----' |||||-
+   . (__)  / \|:::|
+  _/________\._
+ /::;;::.:.:\.\)-.
+ '==========' '---'
+`
+              : String.raw`
+  _______   __
+ |:""""":|/||||
+ ||_____|| ||||
+-'---_---'\|::|-
+ /:;;:.:.\ \D\
+ '"""""""'  "'
+`,
+    },
+  ]
 
   return (
     <>
@@ -259,9 +507,10 @@ function App() {
         style={{ top: borderY }}
       />
       <div className="flex justify-center w-full absolute top-0 left-0">
-        <div className="whitespace-pre ascii-text ascii-no-fill">
-          {grid.windowWidth >= 1280
-            ? String.raw`
+        <Link to="/">
+          <div className="whitespace-pre ascii-text ascii-no-fill">
+            {grid.windowWidth >= 1536
+              ? String.raw`
       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
      ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
     ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
@@ -277,8 +526,8 @@ function App() {
         ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
        ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
       `
-            : grid.windowWidth >= 768
-              ? String.raw`
+              : grid.windowWidth >= 1280
+                ? String.raw`
     ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
    ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
   ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
@@ -290,7 +539,7 @@ function App() {
       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
      ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
       `
-              : String.raw`
+                : String.raw`
   ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼┼  ┼┼┼┼┼┼
  ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼┼  ┼┼┼┼┼┼
 ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼┼  ┼┼┼┼┼┼
@@ -298,231 +547,26 @@ function App() {
     ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼
    ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼
       `}
-        </div>
+          </div>
+        </Link>
       </div>
-      {/* CV */}
-      {resumeProps && (
-        <LinkCard {...resumeProps}>
-          <Link to="/">
-            {grid.windowWidth >= 1440
-              ? String.raw`
-   ______________________
- / \        __  _    _   \
-|   |      /  )' )  /    |
- \_ |     /     (  /     |
-    |    (__/    \/      |
-    |                    |
-    | ########           |
-    |  . ~~~~~~~~~~~~~~~ |
-    |  . ~~~~~~~         |
-    | ###### ####        |
-    |  . ~~~~~~~~~~~     |
-    |  __________________|__
-    \_/____________________/ 
-`
-              : grid.windowWidth >= 1280
-                ? String.raw`
-   ____________________
- / \       __  _    _  \
-|   |     /  )' )  /   |
- \_ |    /     (  /    |
-    |   (__/    \/     |
-    |                  |
-    | ########         |
-    |  . ~~~~~~~~~~~~  |
-    |  . ~~~~~~~       |
-    | ###### ####      |
-    |  ________________|__
-    \_/__________________/
-`
-                : grid.windowWidth >= 768
-                  ? String.raw`
-   _________________
- / \     __  _    _ \
-|   |   /  )' )  /  |
- \_ |  /     (  /   |
-    | (__/    \/    |
-    |               |
-    | ########      |
-    |  . ~~~~~~~~~~ |
-    |  _____________|__
-    \_/_______________/
-`
-                  : String.raw`
- __________
-/\  _. , _ \
-\| (__ \/  |
- | . ~~~~~ |
- | ________|_
- \/_________/
-`}
-          </Link>
-        </LinkCard>
-      )}
-
-      {/* ABOUT */}
-      {aboutProps && (
-        <LinkCard {...aboutProps}>
-          <Link to="/about">
-            {grid.windowWidth >= 1440
-              ? String.raw`
-      _.--’”\
-     /   ,__.)
-    / -.’   / \
-    |/,=. .=.\|
-    || 6 , 6 ||
-   (q   /_.   p)
-    ,\  ._,  /,
-    /)\     /(\
-      |’...’| 
- _.''’._ v _.’''._
-/       '''       \
-`
-              : grid.windowWidth >= 1280
-                ? String.raw`
-     _.--’”\
-    /   ,__.)
-   / -.’   / \
-   |/,=. .=.\|
-   || 6 , 6 ||
-  (q   /_.   p)
-   ,\  ._,  /,
-   /)\     /(\
-     |’...’| 
-_.''’._ . _.’''._
-`
-                : grid.windowWidth >= 768
-                  ? String.raw`
-    .--"'")
-   / ,.-'{ \
-   |/_   _\|
-   | 6 , 6 |
-  (q  /_.  p)
-   ,\ ._, /,
-   /)\___/(\
-   _ |   | _
-.-” ’--.--’ ”-.
-`
-                  : String.raw`
- .-''").
- |/"''\|
- d ^L^ b
- )\ -'/(
-_.-'-'-._
-`}
-          </Link>
-        </LinkCard>
-      )}
-
-      {/* ART */}
-      {artProps && (
-        <LinkCard {...artProps}>
-          <Link to="/">
-            {grid.windowWidth >= 1440
-              ? String.raw`
-             o\
-   _________/__\_________
-  |       ."_____) ---(  |
- ,'-._               .'"-|
-(_____".            '   ||
-  |            _.-.      |
-  |   _      _/ /  \   _-|
-  |__/_\-___/_______\_/  |
-  | '  , /|\ ^   .  ,  ^ |
-  |_____/_|_\____________|
-`
-              : grid.windowWidth >= 1280
-                ? String.raw`
-            o\
-   ________/__\________
-  |     ."_____) ---(  |
- ,'-.              .'"-|
-(____".        ._ '   ||
-  |   _      _/  \   _-|
-  |__/_\.___/_____\_/  |
-  | '  , /|\   .  ,  ^ |
-  |_____/_|_\__________|
-`
-                : grid.windowWidth >= 768
-                  ? String.raw`
-          o\
-  _______/__\_______
- |__    "--'    --(_|
-(___".       _  .' ||
- |   _     _/ \   _-|
- |__/_\___/____\_/  |
- | '  , /|\  . ,  ^ |
- |_____/_|_\________|
-`
-                  : String.raw`
-  _____/"\_____
- |_   "-'   -(_|
-(__".    _. ' '|
- |_,-___/__\_-.|
- |____/|\______|
-`}
-          </Link>
-        </LinkCard>
-      )}
-
-      {/* WORK  */}
-      {workProps && (
-        <LinkCard {...workProps}>
-          <Link to="/work">
-            {grid.windowWidth >= 1440
-              ? String.raw`
-  ________________   _____
- |.--------------.|/|||||||
- ||              || |||||||
- || ~#           || |||||||
- ||              || |||||||
- ||______________|| |||||||
--|______________._| |||||||--
-      /__||__   / \ |||||||
-   .-' \____/   \_ \|:::::|
-  _\______________'-.__
- /:::::::::':::'::\ .\\\---.
-/::::====::::.:.:::\ \\_)   \
-'=================='  '-----'
-`
-              : grid.windowWidth >= 1280
-                ? String.raw`
-  ______________   ____
- |.------------.|/||||||
- ||            || ||||||
- || ~#         || ||||||
- ||____________|| ||||||
--|____________._| ||||||--
-     /__||__  / \ ||||||
-  .-' \____/  \_ \|::::|
-  _\____________'-.__
- /::::::::':::':\ .\\\--.
-/:::====::::.:.::\ \\_)  \
-'================'  '----'
-`
-                : grid.windowWidth >= 768
-                  ? String.raw`
-  __________   ___
- |.--------.|/|||||
- || ~#     || |||||
- ||________|| |||||
--'----,,----' |||||-
-   . (__)  / \|:::|
-  _/________\._
- /::;;::.:.:\.\)-.
- '==========' '---'
-`
-                  : String.raw`
-  _______   __
- |:""""":|/||||
- ||_____|| ||||
--'---_---'\|::|-
- /:;;:.:.\ \D\
- '"""""""'  "'
-`}
-          </Link>
-        </LinkCard>
-      )}
+      {cardData
+        .flatMap(({ name, to, content }) => {
+          const rect = rects.find((r) => r.name.startsWith(name))
+          return rect ? [{ rect, to, content }] : []
+        })
+        .sort((a, b) => a!.rect.zIndex - b!.rect.zIndex) // sort by zIndex ascending
+        .map(({ rect, to, content }) => (
+          <LinkCard
+            key={rect.name}
+            to={to}
+            {...rect}
+            onMove={(x, y) => moveRect(rect.name, x, y)}
+            onTouch={() => updateZIndex(rect.name)}
+          >
+            {content}
+          </LinkCard>
+        ))}
     </>
   )
 }

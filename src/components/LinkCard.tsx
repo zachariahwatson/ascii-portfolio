@@ -1,6 +1,8 @@
+import { Link, type LinkComponentProps } from '@tanstack/react-router'
 import { useGridContext } from 'html-to-ascii'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import Draggable from 'react-draggable'
+import type { DraggableEvent } from 'react-draggable'
 
 interface Props {
   children?: React.ReactNode
@@ -8,7 +10,11 @@ interface Props {
   height: number
   x: number
   y: number
+  zIndex: number
   name: string
+  to: string
+  onMove: (x: number, y: number) => void
+  onTouch: () => void
 }
 
 export default function LinkCard({
@@ -17,15 +23,26 @@ export default function LinkCard({
   height,
   x,
   y,
+  zIndex,
   name,
+  to,
+  onMove,
+  onTouch,
 }: Props) {
   const grid = useGridContext()
   const nodeRef = useRef(null)
+  //const [isDragging, setIsDragging] = useState(false)
+
+  const handleStop = (_: DraggableEvent, data: { x: number; y: number }) => {
+    onMove(data.x, data.y)
+  }
+
   return (
     <Draggable
       nodeRef={nodeRef}
-      grid={[grid.fontWidth, grid.fontHeight]}
       defaultPosition={{ x, y }}
+      grid={[grid.fontWidth, grid.fontHeight]}
+      onStop={handleStop}
       handle="strong"
     >
       <div
@@ -34,6 +51,7 @@ export default function LinkCard({
         style={{
           width,
           height,
+          zIndex,
         }}
       >
         <strong className="pointer-events-auto cursor-grab react-draggable-dragging:cursor-grabbing">
@@ -44,7 +62,9 @@ export default function LinkCard({
             <div>×</div>
           </div>
         </strong>
-        <div className="absolute whitespace-pre pl-5 top-4">{children}</div>
+        <div className="absolute whitespace-pre pl-5 top-4">
+          <Link to={to}>{children}</Link>
+        </div>
       </div>
     </Draggable>
   )
