@@ -47,7 +47,7 @@ export default function LinkCard({
     >
       <div
         ref={nodeRef}
-        className="ascii-border ascii-text absolute"
+        className="ascii-border ascii-text absolute ascii-shadow-bl"
         style={{
           width,
           height,

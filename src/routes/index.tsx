@@ -499,11 +499,11 @@ _.-'-'-._
         style={{ left: borderX }}
       /> */}
       <div
-        className="w-full ascii-border-b ascii-b-_ ascii-no-fill absolute"
+        className="w-full ascii-border-b ascii-b-_ ascii-no-fill absolute overflow-hidden"
         style={{ top: borderY - grid.fontHeight }}
       />
       <div
-        className="w-full ascii-border-b ascii-b-ᴗ ascii-no-fill absolute"
+        className="w-full ascii-border-b ascii-b-◡ ascii-no-fill absolute overflow-hidden"
         style={{ top: borderY }}
       />
       <div className="flex justify-center w-full absolute top-0 left-0">
