@@ -196,6 +196,17 @@ function App() {
   const [borderY, setBorderY] = useState(0)
   const [currentZIndex, setCurrentZIndex] = useState(10)
 
+  const setStorage = (rects: cardProps[]) => {
+    sessionStorage.setItem(
+      'rects',
+      JSON.stringify({
+        rects: rects,
+        windowWidth: grid.windowWidth,
+        windowHeight: grid.windowHeight,
+      }),
+    )
+  }
+
   const updateRects = () => {
     if (!grid.windowWidth || !grid.windowHeight) return
     let areaWidth = 0
@@ -231,9 +242,9 @@ function App() {
       const newRects = generateRects(grid, areaWidth, logoHeight)
       setRects(newRects)
 
-      sessionStorage.setItem('rects', JSON.stringify(newRects))
+      setStorage(newRects)
     } else {
-      setRects(JSON.parse(stored))
+      setRects(JSON.parse(stored).rects)
     }
   }
 
@@ -242,7 +253,7 @@ function App() {
       rect.name === name ? { ...rect, x, y } : rect,
     )
     setRects(updatedRects)
-    sessionStorage.setItem('rects', JSON.stringify(updatedRects))
+    setStorage(updatedRects)
   }
 
   const updateZIndex = (name: string) => {
@@ -253,22 +264,23 @@ function App() {
     )
     setCurrentZIndex(updatedZIndex)
     setRects(updatedRects)
-    sessionStorage.setItem('rects', JSON.stringify(updatedRects))
+    setStorage(updatedRects)
   }
 
   useEffect(() => {
-    const handleResize = () => {
-      updateRects()
-    }
-
-    window.addEventListener('resize', handleResize)
-
     if (grid.windowWidth && grid.windowHeight) {
-      updateRects()
-    }
+      const raw = sessionStorage.getItem('rects')
+      const stored = raw ? JSON.parse(raw) : null
 
-    return () => {
-      window.removeEventListener('resize', handleResize)
+      if (
+        stored &&
+        (stored.windowWidth !== grid.windowWidth ||
+          stored.windowHeight !== grid.windowHeight)
+      ) {
+        sessionStorage.removeItem('rects')
+      }
+
+      updateRects()
     }
   }, [grid.windowWidth, grid.windowHeight])
 
