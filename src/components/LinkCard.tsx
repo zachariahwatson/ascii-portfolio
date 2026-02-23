@@ -1,6 +1,6 @@
-import { Link, type LinkComponentProps } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router'
 import { useGridContext } from 'html-to-ascii'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import Draggable from 'react-draggable'
 import type { DraggableEvent } from 'react-draggable'
 
@@ -14,7 +14,7 @@ interface Props {
   name: string
   to: string
   onMove: (x: number, y: number) => void
-  onTouch: () => void
+  //onTouch: () => void
 }
 
 export default function LinkCard({
@@ -27,7 +27,7 @@ export default function LinkCard({
   name,
   to,
   onMove,
-  onTouch,
+  //onTouch,
 }: Props) {
   const grid = useGridContext()
   const nodeRef = useRef(null)

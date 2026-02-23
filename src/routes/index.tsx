@@ -194,7 +194,7 @@ function App() {
   const [rects, setRects] = useState<cardProps[]>([])
   //const [borderX, setBorderX] = useState(0)
   const [borderY, setBorderY] = useState(0)
-  const [currentZIndex, setCurrentZIndex] = useState(10)
+  //const [currentZIndex, setCurrentZIndex] = useState(10)
 
   const setStorage = (rects: cardProps[]) => {
     sessionStorage.setItem(
@@ -256,16 +256,16 @@ function App() {
     setStorage(updatedRects)
   }
 
-  const updateZIndex = (name: string) => {
-    console.log('updating')
-    const updatedZIndex = currentZIndex + 1
-    const updatedRects = rects.map((rect) =>
-      rect.name === name ? { ...rect, zIndex: updatedZIndex } : rect,
-    )
-    setCurrentZIndex(updatedZIndex)
-    setRects(updatedRects)
-    setStorage(updatedRects)
-  }
+  // const updateZIndex = (name: string) => {
+  //   console.log('updating')
+  //   const updatedZIndex = currentZIndex + 1
+  //   const updatedRects = rects.map((rect) =>
+  //     rect.name === name ? { ...rect, zIndex: updatedZIndex } : rect,
+  //   )
+  //   setCurrentZIndex(updatedZIndex)
+  //   setRects(updatedRects)
+  //   setStorage(updatedRects)
+  // }
 
   useEffect(() => {
     if (grid.windowWidth && grid.windowHeight) {
@@ -574,7 +574,7 @@ _.-'-'-._
             to={to}
             {...rect}
             onMove={(x, y) => moveRect(rect.name, x, y)}
-            onTouch={() => updateZIndex(rect.name)}
+            //onTouch={() => updateZIndex(rect.name)}
           >
             {content}
           </LinkCard>
