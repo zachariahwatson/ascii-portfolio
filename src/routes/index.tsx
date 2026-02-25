@@ -1,4 +1,6 @@
+import Banner from '@/components/Banner'
 import LinkCard from '@/components/LinkCard'
+import { useGridMediaQueries } from '@/hooks/useGridMediaQueries'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useGridContext } from 'html-to-ascii'
 import { useEffect, useState } from 'react'
@@ -36,22 +38,24 @@ function generateRects(
   areaWidth: number,
   logoHeight: number,
 ): cardProps[] {
+  const queries = useGridMediaQueries(grid)
+
   const baseRects: cardProps[] = [
     {
       width:
-        grid.windowWidth >= 1440
+        grid.windowWidth >= queries.xxl
           ? grid.fontWidth * 32
-          : grid.windowWidth >= 1280
+          : grid.windowWidth >= queries.xl
             ? grid.fontWidth * 29
-            : grid.windowWidth >= 768
+            : grid.windowWidth >= queries.md
               ? grid.fontWidth * 26
               : grid.fontWidth * 16,
       height:
-        grid.windowWidth >= 1440
+        grid.windowWidth >= queries.xxl
           ? grid.fontHeight * 17
-          : grid.windowWidth >= 1280
+          : grid.windowWidth >= queries.xl
             ? grid.fontHeight * 16
-            : grid.windowWidth >= 768
+            : grid.windowWidth >= queries.md
               ? grid.fontHeight * 14
               : grid.fontHeight * 10,
       x: 0,
@@ -61,41 +65,41 @@ function generateRects(
     },
     {
       width:
-        grid.windowWidth >= 1440
+        grid.windowWidth >= queries.xxl
           ? grid.fontWidth * 22
-          : grid.windowWidth >= 1280
+          : grid.windowWidth >= queries.xl
             ? grid.fontWidth * 20
-            : grid.windowWidth >= 768
+            : grid.windowWidth >= queries.md
               ? grid.fontWidth * 18
               : grid.fontWidth * 12,
       height:
-        grid.windowWidth >= 1440
+        grid.windowWidth >= queries.xxl
           ? grid.fontHeight * 14
-          : grid.windowWidth >= 1280
+          : grid.windowWidth >= queries.xl
             ? grid.fontHeight * 14
-            : grid.windowWidth >= 768
+            : grid.windowWidth >= queries.md
               ? grid.fontHeight * 13
               : grid.fontHeight * 9,
       x: 0,
       y: 0,
       zIndex: 10,
-      name: grid.windowWidth >= 768 ? 'me.txt' : 'me..',
+      name: grid.windowWidth >= queries.md ? 'me.txt' : 'me..',
     },
     {
       width:
-        grid.windowWidth >= 1440
+        grid.windowWidth >= queries.xxl
           ? grid.fontWidth * 31
-          : grid.windowWidth >= 1280
+          : grid.windowWidth >= queries.xl
             ? grid.fontWidth * 29
-            : grid.windowWidth >= 768
+            : grid.windowWidth >= queries.md
               ? grid.fontWidth * 25
               : grid.fontWidth * 20,
       height:
-        grid.windowWidth >= 1440
+        grid.windowWidth >= queries.xxl
           ? grid.fontHeight * 14
-          : grid.windowWidth >= 1280
+          : grid.windowWidth >= queries.xl
             ? grid.fontHeight * 13
-            : grid.windowWidth >= 768
+            : grid.windowWidth >= queries.md
               ? grid.fontHeight * 12
               : grid.fontHeight * 9,
       x: 0,
@@ -105,19 +109,19 @@ function generateRects(
     },
     {
       width:
-        grid.windowWidth >= 1440
+        grid.windowWidth >= queries.xxl
           ? grid.fontWidth * 32
-          : grid.windowWidth >= 1280
+          : grid.windowWidth >= queries.xl
             ? grid.fontWidth * 29
-            : grid.windowWidth >= 768
+            : grid.windowWidth >= queries.md
               ? grid.fontWidth * 23
               : grid.fontWidth * 18,
       height:
-        grid.windowWidth >= 1440
+        grid.windowWidth >= queries.xxl
           ? grid.fontHeight * 16
-          : grid.windowWidth >= 1280
+          : grid.windowWidth >= queries.xl
             ? grid.fontHeight * 15
-            : grid.windowWidth >= 768
+            : grid.windowWidth >= queries.md
               ? grid.fontHeight * 12
               : grid.fontHeight * 9,
       x: 0,
@@ -149,20 +153,27 @@ function generateRects(
     rect.y = Math.round(randY / grid.fontHeight) * grid.fontHeight
 
     const checkRect = {
-      x: rect.x + rect.width / 8,
-      y: rect.y + rect.height / 8,
-      width: rect.width - rect.width / 4,
-      height: rect.height - rect.height / 4,
+      x: rect.x + rect.width / 10,
+      y: rect.y + rect.height / 10,
+      width: rect.width - rect.width / 5,
+      height: rect.height - rect.height / 5,
     }
 
     let overlap = false
 
     for (const other of placed) {
       const otherCheck = {
-        x: other.x + other.width / 8,
-        y: other.y + other.height / 8,
-        width: other.width - other.width / 4,
-        height: other.height - other.height / 4,
+        x: other.x + other.width / 10,
+        y: other.y + other.height / 10,
+        width: other.width - other.width / 5,
+        height: other.height - other.height / 5,
+      }
+
+      const otherCheckTag = {
+        x: other.x,
+        y: other.y,
+        width: other.width / 3,
+        height: other.height / 3,
       }
 
       if (
@@ -175,6 +186,16 @@ function generateRects(
           otherCheck.y,
           otherCheck.width,
           otherCheck.height,
+        ) ||
+        rectRect(
+          checkRect.x,
+          checkRect.y,
+          checkRect.width,
+          checkRect.height,
+          otherCheckTag.x,
+          otherCheckTag.y,
+          otherCheckTag.width,
+          otherCheckTag.height,
         )
       ) {
         overlap = true
@@ -195,6 +216,7 @@ function App() {
   //const [borderX, setBorderX] = useState(0)
   const [borderY, setBorderY] = useState(0)
   //const [currentZIndex, setCurrentZIndex] = useState(10)
+  const queries = useGridMediaQueries(grid)
 
   const setStorage = (rects: cardProps[]) => {
     sessionStorage.setItem(
@@ -211,23 +233,23 @@ function App() {
     if (!grid.windowWidth || !grid.windowHeight) return
     let areaWidth = 0
 
-    if (grid.windowWidth >= 1440) {
-      areaWidth = 1440
-    } else if (grid.windowWidth >= 1280) {
-      areaWidth = 1280
-    } else if (grid.windowWidth >= 1024) {
-      areaWidth = 1024
-    } else if (grid.windowWidth >= 768) {
-      areaWidth = 768
+    if (grid.windowWidth >= queries.xxl) {
+      areaWidth = queries.xxl
+    } else if (grid.windowWidth >= queries.xl) {
+      areaWidth = queries.xl
+    } else if (grid.windowWidth >= queries.lg) {
+      areaWidth = queries.lg
+    } else if (grid.windowWidth >= queries.md) {
+      areaWidth = queries.md
     } else if (grid.windowWidth >= 640) {
       areaWidth = 640
     }
 
     let logoHeight = 0
 
-    if (grid.windowWidth >= 1536) {
+    if (grid.windowWidth >= queries.xxl) {
       logoHeight = 256 + grid.fontHeight * 3
-    } else if (grid.windowWidth >= 1280) {
+    } else if (grid.windowWidth >= queries.xl) {
       logoHeight = 192 + grid.fontHeight * 3
     } else {
       logoHeight = 128 + grid.fontHeight * 3
@@ -294,7 +316,7 @@ function App() {
       name: 'cv',
       to: '/',
       content:
-        grid.windowWidth >= 1440
+        grid.windowWidth >= queries.xxl
           ? String.raw`
    ______________________
  / \        __  _    _   \
@@ -310,7 +332,7 @@ function App() {
     |  __________________|__
     \_/____________________/ 
 `
-          : grid.windowWidth >= 1280
+          : grid.windowWidth >= queries.xl
             ? String.raw`
    ____________________
  / \       __  _    _  \
@@ -325,7 +347,7 @@ function App() {
     |  ________________|__
     \_/__________________/
 `
-            : grid.windowWidth >= 768
+            : grid.windowWidth >= queries.md
               ? String.raw`
    _________________
  / \     __  _    _ \
@@ -351,7 +373,7 @@ function App() {
       name: 'me',
       to: '/about',
       content:
-        grid.windowWidth >= 1440
+        grid.windowWidth >= queries.xxl
           ? String.raw`
       _.--’”\
      /   ,__.)
@@ -365,7 +387,7 @@ function App() {
  _.''’._ v _.’''._
 /       '''       \
 `
-          : grid.windowWidth >= 1280
+          : grid.windowWidth >= queries.xl
             ? String.raw`
      _.--’”\
     /   ,__.)
@@ -378,7 +400,7 @@ function App() {
      |’...’| 
 _.''’._ . _.’''._
 `
-            : grid.windowWidth >= 768
+            : grid.windowWidth >= queries.md
               ? String.raw`
     .--"'")
    / ,.-'{ \
@@ -402,7 +424,7 @@ _.-'-'-._
       name: 'art',
       to: '/',
       content:
-        grid.windowWidth >= 1440
+        grid.windowWidth >= queries.xxl
           ? String.raw`
              o\
    _________/__\_________
@@ -415,7 +437,7 @@ _.-'-'-._
   | '  , /|\ ^   .  ,  ^ |
   |_____/_|_\____________|
 `
-          : grid.windowWidth >= 1280
+          : grid.windowWidth >= queries.xl
             ? String.raw`
             o\
    ________/__\________
@@ -427,7 +449,7 @@ _.-'-'-._
   | '  , /|\   .  ,  ^ |
   |_____/_|_\__________|
 `
-            : grid.windowWidth >= 768
+            : grid.windowWidth >= queries.md
               ? String.raw`
           o\
   _______/__\_______
@@ -450,7 +472,7 @@ _.-'-'-._
       name: 'work',
       to: '/work',
       content:
-        grid.windowWidth >= 1440
+        grid.windowWidth >= queries.xxl
           ? String.raw`
   ________________   _____
  |.--------------.|/|||||||
@@ -466,7 +488,7 @@ _.-'-'-._
 /::::====::::.:.:::\ \\_)   \
 '=================='  '-----'
 `
-          : grid.windowWidth >= 1280
+          : grid.windowWidth >= queries.xl
             ? String.raw`
   ______________   ____
  |.------------.|/||||||
@@ -481,7 +503,7 @@ _.-'-'-._
 /:::====::::.:.::\ \\_)  \
 '================'  '----'
 `
-            : grid.windowWidth >= 768
+            : grid.windowWidth >= queries.md
               ? String.raw`
   __________   ___
  |.--------.|/|||||
@@ -510,18 +532,10 @@ _.-'-'-._
         className="2xl:w-384 xl:w-7xl lg:w-5xl w-3xl h-full ascii-border-l ascii-l-( ascii-border-r ascii-r-)  ascii-no-fill absolute top-0"
         style={{ left: borderX }}
       /> */}
-      <div
-        className="w-full ascii-border-b ascii-b-_ ascii-no-fill absolute overflow-hidden"
-        style={{ top: borderY - grid.fontHeight }}
-      />
-      <div
-        className="w-full ascii-border-b ascii-b-◡ ascii-no-fill absolute overflow-hidden"
-        style={{ top: borderY }}
-      />
-      <div className="flex justify-center w-full absolute top-0 left-0">
+      <Banner>
         <Link to="/">
           <div className="whitespace-pre ascii-text ascii-no-fill">
-            {grid.windowWidth >= 1536
+            {grid.windowWidth >= queries.xxl
               ? String.raw`
       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
      ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
@@ -538,7 +552,7 @@ _.-'-'-._
         ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
        ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
       `
-              : grid.windowWidth >= 1280
+              : grid.windowWidth >= queries.xl
                 ? String.raw`
     ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
    ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
@@ -561,7 +575,7 @@ _.-'-'-._
       `}
           </div>
         </Link>
-      </div>
+      </Banner>
       {cardData
         .flatMap(({ name, to, content }) => {
           const rect = rects.find((r) => r.name.startsWith(name))
