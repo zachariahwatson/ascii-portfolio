@@ -7,7 +7,7 @@ export default function Footer() {
           href="https://github.com/zachariahwatson/html-to-ascii"
           className="ascii-text"
         >
-          html-to-ascii v0.6.0
+          html-to-ascii v0.6.2
         </a>
       </div>
     </footer>
