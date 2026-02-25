@@ -214,7 +214,7 @@ function App() {
   const grid = useGridContext()
   const [rects, setRects] = useState<cardProps[]>([])
   //const [borderX, setBorderX] = useState(0)
-  const [borderY, setBorderY] = useState(0)
+  //const [borderY, setBorderY] = useState(0)
   //const [currentZIndex, setCurrentZIndex] = useState(10)
   const queries = useGridMediaQueries(grid)
 
@@ -256,7 +256,7 @@ function App() {
     }
 
     //setBorderX(grid.windowWidth / 2 - areaWidth / 2)
-    setBorderY(logoHeight - grid.fontHeight)
+    //setBorderY(logoHeight - grid.fontHeight)
 
     const stored = sessionStorage.getItem('rects')
 
