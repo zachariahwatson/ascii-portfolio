@@ -20,10 +20,10 @@ export default function Banner({
           style={{
             width:
               grid.windowWidth >= queries.xxl
-                  ? queries.xl
-                  : grid.windowWidth >= queries.lg
-                    ? queries.lg
-                    : queries.md,
+                ? queries.xl
+                : grid.windowWidth >= queries.lg
+                  ? queries.lg
+                  : queries.md,
           }}
         >
           {back && (
