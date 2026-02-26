@@ -41,8 +41,6 @@ function RouteComponent() {
           style={{
             width:
               grid.windowWidth >= queries.xxl
-                ? queries.xxl
-                : grid.windowWidth >= queries.xl
                   ? queries.xl
                   : grid.windowWidth >= queries.lg
                     ? queries.lg
