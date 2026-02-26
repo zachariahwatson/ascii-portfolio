@@ -147,10 +147,11 @@ function generateRects(
     let randX =
       Math.random() * (areaWidth - rect.width) +
       (grid.windowWidth / 2 - areaWidth / 2)
-    let randY = Math.random() * (areaHeight - rect.height) + logoHeight
+    let randY = Math.random() * (areaHeight - rect.height)
 
     rect.x = Math.round(randX / grid.fontWidth) * grid.fontWidth
-    rect.y = Math.round(randY / grid.fontHeight) * grid.fontHeight
+    rect.y =
+      Math.round(randY / grid.fontHeight) * grid.fontHeight + grid.fontHeight
 
     const checkRect = {
       x: rect.x + rect.width / 10,
@@ -533,10 +534,10 @@ _.-'-'-._
         style={{ left: borderX }}
       /> */}
       <Banner>
-        <Link to="/">
-          <div className="whitespace-pre ascii-text ascii-no-fill">
-            {grid.windowWidth >= queries.xxl
-              ? String.raw`
+        {/* <Link to="/"> */}
+        <div className="whitespace-pre ascii-text ascii-no-fill">
+          {grid.windowWidth >= queries.xxl
+            ? String.raw`
       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
      ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
     ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
@@ -552,8 +553,8 @@ _.-'-'-._
         ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
        ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼
       `
-              : grid.windowWidth >= queries.xl
-                ? String.raw`
+            : grid.windowWidth >= queries.xl
+              ? String.raw`
     ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
    ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
   ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
@@ -565,7 +566,7 @@ _.-'-'-._
       ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
      ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼     ┼┼┼┼┼┼┼┼┼┼
       `
-                : String.raw`
+              : String.raw`
   ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼┼  ┼┼┼┼┼┼
  ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼┼  ┼┼┼┼┼┼
 ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼┼  ┼┼┼┼┼┼
@@ -573,8 +574,8 @@ _.-'-'-._
     ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼
    ┼┼┼┼┼┼┼┼┼┼┼   ┼┼┼┼┼
       `}
-          </div>
-        </Link>
+        </div>
+        {/* </Link> */}
       </Banner>
       {cardData
         .flatMap(({ name, to, content }) => {
