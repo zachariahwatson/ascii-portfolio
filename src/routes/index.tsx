@@ -1,7 +1,7 @@
 import Banner from '@/components/Banner'
 import LinkCard from '@/components/LinkCard'
 import { useGridMediaQueries } from '@/hooks/useGridMediaQueries'
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import { useGridContext } from 'html-to-ascii'
 import { useEffect, useState } from 'react'
 
