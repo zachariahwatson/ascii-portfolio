@@ -28,16 +28,18 @@ export default function Banner({
         >
           {back && (
             <div className="flex items-end pb-4 absolute left-0 h-full">
-              <Link to="/" className="ascii-text">
-                <div className="h-8 w-8 pl-4">back</div>
+              <Link to="/">
+                <div className="h-8 w-16 pl-4 ascii-text ascii-underline whitespace-pre">
+                  ← back
+                </div>
               </Link>
             </div>
           )}
           {children}
         </div>
       </div>
-      <div className="h-4 ascii-border-b ascii-b-_ ascii-no-fill overflow-hidden" />
-      <div className="h-4 ascii-border-b ascii-b-◡ ascii-no-fill overflow-hidden" />
+      <div className="h-4 -mx-2 ascii-border-b ascii-b-_ ascii-no-fill overflow-hidden" />
+      <div className="h-4 -mx-2 ascii-border-b ascii-b-◡ ascii-no-fill overflow-hidden" />
     </header>
   )
 }
