@@ -154,27 +154,33 @@ function generateRects(
       Math.round(randY / grid.fontHeight) * grid.fontHeight + grid.fontHeight
 
     const checkRect = {
-      x: rect.x + rect.width / 10,
-      y: rect.y + rect.height / 10,
-      width: rect.width - rect.width / 5,
-      height: rect.height - rect.height / 5,
+      x: rect.x + rect.width / 8,
+      y: rect.y + rect.height / 8,
+      width: rect.width - rect.width / 4,
+      height: rect.height - rect.height / 4,
+    }
+    const checkRectShadow = {
+      x: rect.x - grid.fontWidth,
+      y: rect.y - grid.fontHeight,
+      width: rect.width + grid.fontWidth * 2,
+      height: rect.height + grid.fontHeight * 2,
     }
 
     let overlap = false
 
     for (const other of placed) {
       const otherCheck = {
-        x: other.x + other.width / 10,
-        y: other.y + other.height / 10,
-        width: other.width - other.width / 5,
-        height: other.height - other.height / 5,
+        x: other.x + other.width / 8,
+        y: other.y + other.height / 8,
+        width: other.width - other.width / 4,
+        height: other.height - other.height / 4,
       }
 
       const otherCheckTag = {
         x: other.x,
         y: other.y,
-        width: other.width / 3,
-        height: other.height / 3,
+        width: other.width / 2,
+        height: other.height / 2,
       }
 
       if (
@@ -189,10 +195,10 @@ function generateRects(
           otherCheck.height,
         ) ||
         rectRect(
-          checkRect.x,
-          checkRect.y,
-          checkRect.width,
-          checkRect.height,
+          checkRectShadow.x,
+          checkRectShadow.y,
+          checkRectShadow.width,
+          checkRectShadow.height,
           otherCheckTag.x,
           otherCheckTag.y,
           otherCheckTag.width,
@@ -242,8 +248,8 @@ function App() {
       areaWidth = queries.lg
     } else if (grid.windowWidth >= queries.md) {
       areaWidth = queries.md
-    } else if (grid.windowWidth >= 640) {
-      areaWidth = 640
+    } else {
+      areaWidth = grid.windowWidth - grid.fontWidth * 2
     }
 
     let logoHeight = 0
