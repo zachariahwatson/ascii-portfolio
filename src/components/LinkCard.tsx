@@ -47,7 +47,7 @@ export default function LinkCard({
     >
       <div
         ref={nodeRef}
-        className="ascii-border ascii-text absolute ascii-shadow-bl"
+        className="ascii-border absolute ascii-shadow-bl"
         style={{
           width,
           height,
@@ -56,14 +56,18 @@ export default function LinkCard({
       >
         <strong className="pointer-events-auto cursor-grab react-draggable-dragging:cursor-grabbing">
           <div className="w-full h-8 ascii ascii-border-b whitespace-pre flex justify-end px-2 space-x-2">
-            <div className="absolute left-5">{name}</div>
-            <div>-</div>
-            <div>□</div>
-            <div>×</div>
+            <div className="absolute left-5 ascii-text ascii-no-fill">
+              {name}
+            </div>
+            <div className="ascii-text ascii-no-fill">-</div>
+            <div className="ascii-text ascii-no-fill">□</div>
+            <div className="ascii-text ascii-no-fill">×</div>
           </div>
         </strong>
         <div className="absolute whitespace-pre pl-5 top-4">
-          <Link to={to}>{children}</Link>
+          <Link className="ascii-text ascii-no-fill" to={to}>
+            {children}
+          </Link>
         </div>
       </div>
     </Draggable>

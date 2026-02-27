@@ -2,6 +2,7 @@ interface Props {
   children?: React.ReactNode
   className?: string
   desc: string
+  tags?: string
   website?: string
   websiteLabel?: string
   github?: string
@@ -16,11 +17,13 @@ const ButtonLink = ({
 }) => {
   return (
     <a
-      className="w-36 h-8 ascii ascii-shadow-bl pl-2 flex justify-center items-center"
+      className="w-35 h-8 ascii-border ascii-shadow-bl pl-2 flex justify-center items-center relative"
       href={href}
       target="_blank"
     >
-      <p>{children}</p>
+      <p className="absolute ascii-text whitespace-pre ascii-underline -top-0.5">
+        {children}
+      </p>
     </a>
   )
 }
@@ -29,16 +32,22 @@ export default function WorkCard({
   children,
   className = '',
   desc,
+  tags,
   website,
   websiteLabel,
   github,
 }: Props) {
   return (
-    <div className={`border ascii aspect-3/2 relative ${className}`}>
-      <div className="grid grid-cols-1 grid-rows-9 h-full">
-        <div className="row-span-2">{children}</div>
-        <p className="pl-4 pt-4 row-span-5">{desc}</p>
-        <div className="flex justify-center space-x-10 pl-2">
+    <div className={`border ascii md:aspect-3/2 relative ${className}`}>
+      <div className="flex flex-col justify-start h-full relative">
+        <div className="ascii-text ascii-no-fill -mt-1">{children}</div>
+        <p className="px-4 pt-4 ascii-text ascii-no-fill flex-1 whitespace-pre-wrap">
+          {desc}
+        </p>
+        <p className="px-4 pt-4 pb-8 ascii-text ascii-no-fill  whitespace-pre-wrap">
+          {tags}
+        </p>
+        <div className="flex justify-center md:space-x-10 space-x-8 pb-12">
           {website && (
             <ButtonLink
               href={website}
