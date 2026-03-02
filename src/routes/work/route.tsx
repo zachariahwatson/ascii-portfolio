@@ -16,7 +16,7 @@ function RouteComponent() {
     <div className="flex flex-col h-screen">
       <Banner back>
         <div className="whitespace-pre ascii-text ascii-no-fill">
-          {grid.windowWidth >= queries.xl
+          {grid.windowWidth >= queries.lg
             ? String.raw`
  _______ _______ _______ _______ 
 |\     /|\     /|\     /|\     /|
@@ -38,12 +38,12 @@ function RouteComponent() {
         {/* <div className="2xl:w-384 xl:w-7xl lg:w-5xl w-3xl"> */}
 
         <div
-          className="grid lg:grid-cols-2 grid-cols-1 gap-8 place-content-center p-4"
+          className="grid min-[1000px]:grid-cols-2 grid-cols-1 gap-8 place-content-center p-4 ascii-parent"
           style={{
             width:
               grid.windowWidth >= queries.xxl
                 ? queries.xl
-                : grid.windowWidth >= queries.md
+                : grid.windowWidth >= 1000
                   ? queries.lg
                   : queries.md,
           }}
@@ -53,9 +53,9 @@ function RouteComponent() {
             tags="#react #vite"
             github="https://github.com/zachariahwatson/html-to-ascii"
           >
-            {grid.windowWidth >= queries.lg ? (
-              <div className="flex justify-center h-20 border ascii-border-b ascii-no-fill">
-                <div className="whitespace-pre border ascii-text ascii-no-fill">
+            {grid.windowWidth >= 480 ? (
+              <div className="flex justify-center items-center h-20 ascii-border-b ascii-no-fill">
+                <div className="whitespace-pre ascii-text ascii-no-fill">
                   {String.raw`
  ⣇⡀ ⣰⡀ ⣀⣀  ⡇    ⣰⡀ ⢀⡀    ⢀⣀ ⢀⣀ ⢀⣀ ⠄ ⠄
  ⠇⠸ ⠘⠤ ⠇⠇⠇ ⠣ ⠉⠉ ⠘⠤ ⠣⠜ ⠉⠉ ⠣⠼ ⠭⠕ ⠣⠤ ⠇ ⠇
@@ -63,8 +63,8 @@ function RouteComponent() {
                 </div>
               </div>
             ) : (
-              <div className="flex justify-center h-16 border ascii">
-                <div className="whitespace-pre border ascii-text ascii-no-fill pt-3">
+              <div className="flex justify-center items-center h-16 ascii">
+                <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
                   html-to-ascii
                 </div>
               </div>
@@ -77,9 +77,9 @@ function RouteComponent() {
             websiteLabel="thispa.ge"
             github="https://github.com/zachariahwatson/thispage"
           >
-            {grid.windowWidth >= queries.lg ? (
-              <div className="flex justify-center h-20 border ascii">
-                <div className="whitespace-pre border ascii-text ascii-no-fill">
+            {grid.windowWidth >= 480 ? (
+              <div className="flex justify-center items-center h-20 ascii-border-b ascii-no-fill">
+                <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
                   {String.raw`      
 _|_ |_  o  _ ._   _.  _   _
  |_ | | | _> |_) (_| (_| (/_
@@ -88,8 +88,8 @@ _|_ |_  o  _ ._   _.  _   _
                 </div>
               </div>
             ) : (
-              <div className="flex justify-center h-16 border ascii">
-                <div className="whitespace-pre border ascii-text ascii-no-fill pt-3">
+              <div className="flex justify-center items-center h-16 ascii-border-b">
+                <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
                   thispage
                 </div>
               </div>
@@ -100,9 +100,9 @@ _|_ |_  o  _ ._   _.  _   _
             tags="#nextjs #threejs #node #serialport #webmidi"
             github="https://github.com/zachariahwatson/formatic-fobs"
           >
-            {grid.windowWidth >= queries.lg ? (
-              <div className="flex justify-center h-20 border ascii">
-                <div className="whitespace-pre border -m-4 ascii-text ascii-no-fill">
+            {grid.windowWidth >= 480 ? (
+              <div className="flex justify-center items-center h-20 ascii-border-b ascii-no-fill">
+                <div className="whitespace-pre -mt-4 ascii-text ascii-no-fill">
                   {String.raw`
  ___ __  __       _ ____  _   __ _  _  __
 (_  /  )/__)/|/| /_| /  // ) |_ / \|_)(_
@@ -111,8 +111,8 @@ _|_ |_  o  _ ._   _.  _   _
                 </div>
               </div>
             ) : (
-              <div className="flex justify-center h-16 border ascii">
-                <div className="whitespace-pre border ascii-text ascii-no-fill pt-3">
+              <div className="flex justify-center items-center h-16 ascii">
+                <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
                   FORMATIC FOBS
                 </div>
               </div>
@@ -124,9 +124,9 @@ _|_ |_  o  _ ._   _.  _   _
             website="https://www.artblocks.io/collection/arcadia-by-zachariah-watson"
             websiteLabel="artblocks.io"
           >
-            {grid.windowWidth >= queries.lg ? (
-              <div className="flex justify-center h-20 border ascii">
-                <div className="whitespace-pre border -m-4 ascii-text ascii-no-fill">
+            {grid.windowWidth >= 480 ? (
+              <div className="flex justify-center items-center h-20 ascii-border-b ascii-no-fill">
+                <div className="whitespace-pre -mt-4 ascii-text ascii-no-fill">
                   {String.raw`
   __    ___   ___    __    ___   _    __
  / /\  | |_) / / \  / /\  | | \ | |  / /\
@@ -135,8 +135,8 @@ _|_ |_  o  _ ._   _.  _   _
                 </div>
               </div>
             ) : (
-              <div className="flex justify-center h-16 border ascii">
-                <div className="whitespace-pre border ascii-text ascii-no-fill pt-3">
+              <div className="flex justify-center items-center h-16 ascii">
+                <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
                   Arcadia
                 </div>
               </div>
