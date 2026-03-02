@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as WorkRouteRouteImport } from './routes/work/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as WorkTextRouteImport } from './routes/work/text'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -29,42 +28,34 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorkTextRoute = WorkTextRouteImport.update({
-  id: '/text',
-  path: '/text',
-  getParentRoute: () => WorkRouteRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/work': typeof WorkRouteRouteWithChildren
+  '/work': typeof WorkRouteRoute
   '/about': typeof AboutRoute
-  '/work/text': typeof WorkTextRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/work': typeof WorkRouteRouteWithChildren
+  '/work': typeof WorkRouteRoute
   '/about': typeof AboutRoute
-  '/work/text': typeof WorkTextRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/work': typeof WorkRouteRouteWithChildren
+  '/work': typeof WorkRouteRoute
   '/about': typeof AboutRoute
-  '/work/text': typeof WorkTextRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/work' | '/about' | '/work/text'
+  fullPaths: '/' | '/work' | '/about'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/work' | '/about' | '/work/text'
-  id: '__root__' | '/' | '/work' | '/about' | '/work/text'
+  to: '/' | '/work' | '/about'
+  id: '__root__' | '/' | '/work' | '/about'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  WorkRouteRoute: typeof WorkRouteRouteWithChildren
+  WorkRouteRoute: typeof WorkRouteRoute
   AboutRoute: typeof AboutRoute
 }
 
@@ -91,31 +82,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/work/text': {
-      id: '/work/text'
-      path: '/text'
-      fullPath: '/work/text'
-      preLoaderRoute: typeof WorkTextRouteImport
-      parentRoute: typeof WorkRouteRoute
-    }
   }
 }
 
-interface WorkRouteRouteChildren {
-  WorkTextRoute: typeof WorkTextRoute
-}
-
-const WorkRouteRouteChildren: WorkRouteRouteChildren = {
-  WorkTextRoute: WorkTextRoute,
-}
-
-const WorkRouteRouteWithChildren = WorkRouteRoute._addFileChildren(
-  WorkRouteRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  WorkRouteRoute: WorkRouteRouteWithChildren,
+  WorkRouteRoute: WorkRouteRoute,
   AboutRoute: AboutRoute,
 }
 export const routeTree = rootRouteImport
