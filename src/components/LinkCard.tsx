@@ -1,5 +1,4 @@
 import { Link } from '@tanstack/react-router'
-import { useGridContext } from 'html-to-ascii'
 import { useRef } from 'react'
 import Draggable from 'react-draggable'
 import type { DraggableEvent } from 'react-draggable'
@@ -29,7 +28,6 @@ export default function LinkCard({
   onMove,
   //onTouch,
 }: Props) {
-  const grid = useGridContext()
   const nodeRef = useRef(null)
   //const [isDragging, setIsDragging] = useState(false)
 
