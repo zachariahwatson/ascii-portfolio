@@ -297,21 +297,17 @@ function App() {
   // }
 
   useEffect(() => {
-    if (grid.windowWidth && grid.windowHeight) {
+    if (grid.windowWidth) {
       const raw = sessionStorage.getItem('rects')
       const stored = raw ? JSON.parse(raw) : null
 
-      if (
-        stored &&
-        (stored.windowWidth !== grid.windowWidth ||
-          stored.windowHeight !== grid.windowHeight)
-      ) {
+      if (stored && stored.windowWidth !== grid.windowWidth) {
         sessionStorage.removeItem('rects')
       }
 
       updateRects()
     }
-  }, [grid.windowWidth, grid.windowHeight])
+  }, [grid.windowWidth])
 
   // const resumeProps = rects.find((r) => r.name.startsWith('cv'))
   // const aboutProps = rects.find((r) => r.name.startsWith('me'))
