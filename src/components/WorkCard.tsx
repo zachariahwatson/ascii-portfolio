@@ -17,7 +17,7 @@ const ButtonLink = ({
 }) => {
   return (
     <a
-      className="w-36 h-8 ascii-border ascii-shadow-bl pl-2 flex justify-center items-center relative pt-4"
+      className="w-36 h-12 ascii-border ascii-shadow-bl pl-2 flex justify-center items-center relative pt-2"
       href={href}
       target="_blank"
     >
@@ -41,10 +41,8 @@ export default function WorkCard({
     <div className={`ascii md:aspect-3/2 relative ${className}`}>
       <div className="flex flex-col justify-start h-full relative">
         <div className="ascii-text ascii-no-fill">{children}</div>
-        <p className="px-4 pt-4 ascii-text ascii-no-fill flex-1 whitespace-pre-wrap">
-          {desc}
-        </p>
-        <p className="px-4 pt-4 pb-4 ascii-text ascii-no-fill  whitespace-pre-wrap">
+        <p className="px-4 pt-4 ascii-text ascii-no-fill flex-1">{desc}</p>
+        <p className="px-4 pt-4 ascii-text ascii-no-fill  whitespace-pre-wrap">
           {tags}
         </p>
         <div className="flex justify-center md:space-x-10 space-x-8 justify-self-end pb-12">
