@@ -38,12 +38,12 @@ function RouteComponent() {
         {/* <div className="2xl:w-384 xl:w-7xl lg:w-5xl w-3xl"> */}
 
         <div
-          className="grid min-[1000px]:grid-cols-2 grid-cols-1 gap-8 place-content-center p-4 ascii-parent"
+          className="grid min-[1080px]:grid-cols-2 grid-cols-1 gap-8 place-content-center p-4 ascii-parent max-[1080px]:max-w-2xl max-md:max-w-xl"
           style={{
             width:
               grid.windowWidth >= queries.xxl
                 ? queries.xl
-                : grid.windowWidth >= 1000
+                : grid.windowWidth >= 1080
                   ? queries.lg
                   : queries.md,
           }}
@@ -54,7 +54,7 @@ function RouteComponent() {
             github="https://github.com/zachariahwatson/html-to-ascii"
           >
             {grid.windowWidth >= 480 ? (
-              <div className="flex justify-center items-center h-20 ascii-border-b ascii-no-fill">
+              <div className="flex justify-center items-center h-24 ascii-border-b ascii-no-fill">
                 <div className="whitespace-pre ascii-text ascii-no-fill">
                   {String.raw`
  ⣇⡀ ⣰⡀ ⣀⣀  ⡇    ⣰⡀ ⢀⡀    ⢀⣀ ⢀⣀ ⢀⣀ ⠄ ⠄
@@ -78,7 +78,7 @@ function RouteComponent() {
             github="https://github.com/zachariahwatson/thispage"
           >
             {grid.windowWidth >= 480 ? (
-              <div className="flex justify-center items-center h-20 ascii-border-b ascii-no-fill">
+              <div className="flex justify-center items-center h-24 ascii-border-b ascii-no-fill">
                 <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
                   {String.raw`      
 _|_ |_  o  _ ._   _.  _   _
@@ -101,8 +101,8 @@ _|_ |_  o  _ ._   _.  _   _
             github="https://github.com/zachariahwatson/formatic-fobs"
           >
             {grid.windowWidth >= 480 ? (
-              <div className="flex justify-center items-center h-20 ascii-border-b ascii-no-fill">
-                <div className="whitespace-pre -mt-4 ascii-text ascii-no-fill">
+              <div className="flex justify-center items-center h-24 ascii-border-b ascii-no-fill">
+                <div className="whitespace-pre -mt-4 ascii-text ascii-no-fill pb-4">
                   {String.raw`
  ___ __  __       _ ____  _   __ _  _  __
 (_  /  )/__)/|/| /_| /  // ) |_ / \|_)(_
@@ -125,8 +125,8 @@ _|_ |_  o  _ ._   _.  _   _
             websiteLabel="artblocks.io"
           >
             {grid.windowWidth >= 480 ? (
-              <div className="flex justify-center items-center h-20 ascii-border-b ascii-no-fill">
-                <div className="whitespace-pre -mt-4 ascii-text ascii-no-fill">
+              <div className="flex justify-center items-center h-24 ascii-border-b ascii-no-fill">
+                <div className="whitespace-pre ascii-text ascii-no-fill pb-8">
                   {String.raw`
   __    ___   ___    __    ___   _    __
  / /\  | |_) / / \  / /\  | | \ | |  / /\

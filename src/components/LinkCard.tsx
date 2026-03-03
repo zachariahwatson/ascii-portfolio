@@ -53,11 +53,11 @@ export default function LinkCard({
         }}
       >
         <strong className="pointer-events-auto cursor-grab react-draggable-dragging:cursor-grabbing">
-          <div className="w-full h-8 ascii ascii-border-b whitespace-pre flex justify-end px-2 space-x-2">
-            <div className="absolute left-6 top-4 ascii-text ascii-no-fill">
+          <div className="w-full h-12 ascii ascii-border-b whitespace-pre flex justify-end px-2 space-x-2">
+            <div className="absolute left-6 top-8 ascii-text ascii-no-fill">
               {name}
             </div>
-            <div className="absolute top-4 ascii-text ascii-no-fill">- □ ×</div>
+            <div className="absolute top-8 ascii-text ascii-no-fill">- □ ×</div>
           </div>
         </strong>
         <div className="absolute whitespace-pre pl-5 top-12">
