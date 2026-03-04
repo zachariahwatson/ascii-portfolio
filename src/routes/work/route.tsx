@@ -79,7 +79,7 @@ function RouteComponent() {
           >
             {grid.windowWidth >= 480 ? (
               <div className="flex justify-center items-center h-24 ascii-border-b ascii-no-fill">
-                <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
+                <div className="whitespace-pre ascii-text ascii-no-fill pt-2">
                   {String.raw`      
 _|_ |_  o  _ ._   _.  _   _
  |_ | | | _> |_) (_| (_| (/_
@@ -96,13 +96,13 @@ _|_ |_  o  _ ._   _.  _   _
             )}
           </WorkCard>
           <WorkCard
-            desc="FORMATIC FOBS was an interactive art exhibit during Art Blocks Marfa Weekend 2024 in Marfa, TX. Visitors would customize a UFO keychain in real-time using a MIDI controller and have it 3D-printed on the fly."
+            desc="FORMATIC FOBS was an interactive art exhibit during Art Blocks Marfa Weekend 2024 in Marfa, TX. Visitors would customize a UFO keychain in real-time using a MIDI controller and have it 3D printed on the fly."
             tags="#nextjs #threejs #node #serialport #webmidi"
             github="https://github.com/zachariahwatson/formatic-fobs"
           >
             {grid.windowWidth >= 480 ? (
               <div className="flex justify-center items-center h-24 ascii-border-b ascii-no-fill">
-                <div className="whitespace-pre -mt-4 ascii-text ascii-no-fill pb-4">
+                <div className="whitespace-pre -mt-4 ascii-text ascii-no-fill pb-1">
                   {String.raw`
  ___ __  __       _ ____  _   __ _  _  __
 (_  /  )/__)/|/| /_| /  // ) |_ / \|_)(_
@@ -126,7 +126,7 @@ _|_ |_  o  _ ._   _.  _   _
           >
             {grid.windowWidth >= 480 ? (
               <div className="flex justify-center items-center h-24 ascii-border-b ascii-no-fill">
-                <div className="whitespace-pre ascii-text ascii-no-fill pb-8">
+                <div className="whitespace-pre ascii-text ascii-no-fill pb-4">
                   {String.raw`
   __    ___   ___    __    ___   _    __
  / /\  | |_) / / \  / /\  | | \ | |  / /\
