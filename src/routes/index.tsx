@@ -48,7 +48,7 @@ function generateRects(
           : grid.windowWidth >= queries.xl
             ? grid.fontWidth * 29
             : grid.windowWidth >= queries.md
-              ? grid.fontWidth * 26
+              ? grid.fontWidth * 26.5
               : grid.fontWidth * 16,
       height:
         grid.windowWidth >= queries.xxl
@@ -150,8 +150,7 @@ function generateRects(
     let randY = Math.random() * (areaHeight - rect.height)
 
     rect.x = Math.round(randX / grid.fontWidth) * grid.fontWidth
-    rect.y =
-      Math.round(randY / grid.fontHeight) * grid.fontHeight + grid.fontHeight
+    rect.y = Math.round(randY / grid.fontHeight) * grid.fontHeight
 
     const checkRect = {
       x: rect.x + rect.width / 8,
@@ -255,11 +254,11 @@ function App() {
     let logoHeight = 0
 
     if (grid.windowWidth >= queries.xxl) {
-      logoHeight = 256 + grid.fontHeight * 3
+      logoHeight = grid.fontHeight * 18
     } else if (grid.windowWidth >= queries.xl) {
-      logoHeight = 192 + grid.fontHeight * 3
+      logoHeight = grid.fontHeight * 14
     } else {
-      logoHeight = 128 + grid.fontHeight * 3
+      logoHeight = grid.fontHeight * 10
     }
 
     //setBorderX(grid.windowWidth / 2 - areaWidth / 2)

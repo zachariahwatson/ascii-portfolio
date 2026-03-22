@@ -38,12 +38,12 @@ function RouteComponent() {
         {/* <div className="2xl:w-384 xl:w-7xl lg:w-5xl w-3xl"> */}
 
         <div
-          className="grid min-[1080px]:grid-cols-2 grid-cols-1 gap-8 place-content-center p-4 ascii-parent max-[1080px]:max-w-2xl max-md:max-w-xl"
+          className="grid min-[1204px]:grid-cols-2 grid-cols-1 gap-8 place-content-center p-4 ascii-parent max-[1204px]:max-w-2xl max-md:max-w-xl break-keep"
           style={{
             width:
               grid.windowWidth >= queries.xxl
                 ? queries.xl
-                : grid.windowWidth >= 1080
+                : grid.windowWidth >= 1204
                   ? queries.lg
                   : queries.md,
           }}
@@ -53,9 +53,9 @@ function RouteComponent() {
             tags="#react #vite"
             github="https://github.com/zachariahwatson/html-to-ascii"
           >
-            {grid.windowWidth >= 480 ? (
-              <div className="flex justify-center items-center h-24 ascii-border-b ascii-no-fill">
-                <div className="whitespace-pre ascii-text ascii-no-fill">
+            {grid.windowWidth >= 520 ? (
+              <div className="flex justify-center items-center h-28 ascii-border-b ascii-no-fill">
+                <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
                   {String.raw`
  ⣇⡀ ⣰⡀ ⣀⣀  ⡇    ⣰⡀ ⢀⡀    ⢀⣀ ⢀⣀ ⢀⣀ ⠄ ⠄
  ⠇⠸ ⠘⠤ ⠇⠇⠇ ⠣ ⠉⠉ ⠘⠤ ⠣⠜ ⠉⠉ ⠣⠼ ⠭⠕ ⠣⠤ ⠇ ⠇
@@ -63,7 +63,7 @@ function RouteComponent() {
                 </div>
               </div>
             ) : (
-              <div className="flex justify-center items-center h-16 ascii">
+              <div className="flex justify-center items-center h-12 ascii">
                 <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
                   html-to-ascii
                 </div>
@@ -75,11 +75,12 @@ function RouteComponent() {
             tags="#nextjs #supabase #rls #zod #resend"
             website="https://thispa.ge/"
             websiteLabel="thispa.ge"
+            websiteWidth={132}
             github="https://github.com/zachariahwatson/thispage"
           >
-            {grid.windowWidth >= 480 ? (
-              <div className="flex justify-center items-center h-24 ascii-border-b ascii-no-fill">
-                <div className="whitespace-pre ascii-text ascii-no-fill pt-2">
+            {grid.windowWidth >= 520 ? (
+              <div className="flex justify-center items-center h-28 ascii-border-b ascii-no-fill">
+                <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
                   {String.raw`      
 _|_ |_  o  _ ._   _.  _   _
  |_ | | | _> |_) (_| (_| (/_
@@ -88,7 +89,7 @@ _|_ |_  o  _ ._   _.  _   _
                 </div>
               </div>
             ) : (
-              <div className="flex justify-center items-center h-16 ascii-border-b">
+              <div className="flex justify-center items-center h-12 ascii-border-b">
                 <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
                   thispage
                 </div>
@@ -97,11 +98,11 @@ _|_ |_  o  _ ._   _.  _   _
           </WorkCard>
           <WorkCard
             desc="FORMATIC FOBS was an interactive art exhibit during Art Blocks Marfa Weekend 2024 in Marfa, TX. Visitors would customize a UFO keychain in real-time using a MIDI controller and have it 3D printed on the fly."
-            tags="#nextjs #threejs #node #serialport #webmidi"
+            tags="#nextjs #threejs #serialport #webmidi #redis #bullmq"
             github="https://github.com/zachariahwatson/formatic-fobs"
           >
-            {grid.windowWidth >= 480 ? (
-              <div className="flex justify-center items-center h-24 ascii-border-b ascii-no-fill">
+            {grid.windowWidth >= 520 ? (
+              <div className="flex justify-center items-center h-28 ascii-border-b ascii-no-fill">
                 <div className="whitespace-pre -mt-4 ascii-text ascii-no-fill pb-1">
                   {String.raw`
  ___ __  __       _ ____  _   __ _  _  __
@@ -111,8 +112,8 @@ _|_ |_  o  _ ._   _.  _   _
                 </div>
               </div>
             ) : (
-              <div className="flex justify-center items-center h-16 ascii">
-                <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
+              <div className="flex justify-center items-center h-12 ascii">
+                <div className="whitespace-pre ascii-text ascii-no-fill pt-8">
                   FORMATIC FOBS
                 </div>
               </div>
@@ -123,9 +124,10 @@ _|_ |_  o  _ ._   _.  _   _
             tags="#p5js #webgl #glsl"
             website="https://www.artblocks.io/collection/arcadia-by-zachariah-watson"
             websiteLabel="artblocks.io"
+            websiteWidth={160}
           >
-            {grid.windowWidth >= 480 ? (
-              <div className="flex justify-center items-center h-24 ascii-border-b ascii-no-fill">
+            {grid.windowWidth >= 520 ? (
+              <div className="flex justify-center items-center h-28 ascii-border-b ascii-no-fill">
                 <div className="whitespace-pre ascii-text ascii-no-fill pb-4">
                   {String.raw`
   __    ___   ___    __    ___   _    __
@@ -135,8 +137,8 @@ _|_ |_  o  _ ._   _.  _   _
                 </div>
               </div>
             ) : (
-              <div className="flex justify-center items-center h-16 ascii">
-                <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
+              <div className="flex justify-center items-center h-12 ascii">
+                <div className="whitespace-pre ascii-text ascii-no-fill pt-8">
                   Arcadia
                 </div>
               </div>

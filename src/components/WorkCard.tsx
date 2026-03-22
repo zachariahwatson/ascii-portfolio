@@ -6,18 +6,22 @@ interface Props {
   website?: string
   websiteLabel?: string
   github?: string
+  websiteWidth?: number
 }
 
 const ButtonLink = ({
   href,
+  width,
   children,
 }: {
   href: string
+  width: number
   children: React.ReactNode
 }) => {
   return (
     <a
-      className="w-36 h-12 ascii-border ascii-shadow-bl pl-2 flex justify-center items-center relative pt-3"
+      className="h-12 ascii-border ascii-shadow-bl pl-2 flex justify-center items-center relative pt-4"
+      style={{ width: width }}
       href={href}
       target="_blank"
     >
@@ -36,22 +40,28 @@ export default function WorkCard({
   website,
   websiteLabel,
   github,
+  websiteWidth,
 }: Props) {
   return (
-    <div className={`ascii md:aspect-3/2 relative ${className}`}>
+    <div className={`ascii ascii-parent md:aspect-3/2 relative ${className}`}>
       <div className="flex flex-col justify-start h-full relative">
         <div className="ascii-text ascii-no-fill">{children}</div>
         <div className="px-4 pt-4 ascii-text ascii-no-fill flex-1">{desc}</div>
         <div className="px-4 pt-4 ascii-text ascii-no-fill whitespace-pre-wrap">
           {tags}
         </div>
-        <div className="flex justify-center md:space-x-10 space-x-8 justify-self-end pb-12">
+        <div className="flex justify-center md:space-x-10 space-x-8 justify-self-end pb-9 pt-4">
           {website && (
             <ButtonLink
               href={website}
+              width={websiteWidth ? websiteWidth : 0}
             >{`${websiteLabel ? websiteLabel : 'website'} ↲`}</ButtonLink>
           )}
-          {github && <ButtonLink href={github}>github ↲</ButtonLink>}
+          {github && (
+            <ButtonLink width={96} href={github}>
+              github ↲
+            </ButtonLink>
+          )}
         </div>
       </div>
     </div>

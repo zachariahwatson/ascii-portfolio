@@ -60,7 +60,7 @@ export default function LinkCard({
             <div className="absolute top-8 ascii-text ascii-no-fill">- □ ×</div>
           </div>
         </strong>
-        <div className="absolute whitespace-pre pl-5 top-12">
+        <div className="absolute whitespace-pre pl-6 top-12">
           <Link className="ascii-text ascii-no-fill" to={to}>
             {children}
           </Link>
