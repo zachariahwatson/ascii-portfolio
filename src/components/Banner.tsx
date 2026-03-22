@@ -38,8 +38,8 @@ export default function Banner({
           {children}
         </div>
       </div>
-      <div className="h-4 -mt-2 -mx-2 ascii-border-b ascii-b-_ ascii-no-fill overflow-hidden" />
-      <div className="h-4 -mx-2 ascii-border-b ascii-b-◡ ascii-no-fill overflow-hidden" />
+      <div className="h-4 -mt-2 ascii-border-b ascii-b-_ ascii-no-fill overflow-hidden" />
+      <div className="h-4 ascii-border-b ascii-b-◡ ascii-no-fill overflow-hidden" />
     </header>
   )
 }
