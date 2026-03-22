@@ -20,10 +20,14 @@ export const Route = createRootRoute({
   }),
   component: () => (
     <>
-      <head>
-        <HeadContent />
-      </head>
-      <ASCIIProvider tl="╭" tr="╮" br="╯" bl="╰" sl="░" sr="░" st="░" sb="░">
+      <HeadContent />
+      <ASCIIProvider
+        sl="░"
+        sr="░"
+        st="░"
+        sb="░"
+        fontPath={`${import.meta.env.BASE_URL}CascadiaMono-VariableFont_wght.ttf`}
+      >
         <ASCII>
           <Footer />
           <Outlet />
