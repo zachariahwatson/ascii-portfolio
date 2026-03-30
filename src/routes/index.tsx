@@ -57,7 +57,7 @@ function generateRects(
             ? grid.fontHeight * 16
             : grid.windowWidth >= queries.md
               ? grid.fontHeight * 14
-              : grid.fontHeight * 10,
+              : grid.fontHeight * 9,
       x: 0,
       y: 0,
       zIndex: 10,
@@ -68,18 +68,18 @@ function generateRects(
         grid.windowWidth >= queries.xxl
           ? grid.fontWidth * 22
           : grid.windowWidth >= queries.xl
-            ? grid.fontWidth * 20
+            ? grid.fontWidth * 21
             : grid.windowWidth >= queries.md
               ? grid.fontWidth * 18
               : grid.fontWidth * 12,
       height:
         grid.windowWidth >= queries.xxl
-          ? grid.fontHeight * 14
+          ? grid.fontHeight * 15
           : grid.windowWidth >= queries.xl
             ? grid.fontHeight * 14
             : grid.windowWidth >= queries.md
               ? grid.fontHeight * 13
-              : grid.fontHeight * 9,
+              : grid.fontHeight * 8,
       x: 0,
       y: 0,
       zIndex: 10,
@@ -90,7 +90,7 @@ function generateRects(
         grid.windowWidth >= queries.xxl
           ? grid.fontWidth * 31
           : grid.windowWidth >= queries.xl
-            ? grid.fontWidth * 29
+            ? grid.fontWidth * 28
             : grid.windowWidth >= queries.md
               ? grid.fontWidth * 25
               : grid.fontWidth * 20,
@@ -100,8 +100,8 @@ function generateRects(
           : grid.windowWidth >= queries.xl
             ? grid.fontHeight * 13
             : grid.windowWidth >= queries.md
-              ? grid.fontHeight * 12
-              : grid.fontHeight * 9,
+              ? grid.fontHeight * 11
+              : grid.fontHeight * 8,
       x: 0,
       y: 0,
       zIndex: 10,
@@ -112,15 +112,15 @@ function generateRects(
         grid.windowWidth >= queries.xxl
           ? grid.fontWidth * 32
           : grid.windowWidth >= queries.xl
-            ? grid.fontWidth * 29
+            ? grid.fontWidth * 30
             : grid.windowWidth >= queries.md
               ? grid.fontWidth * 23
-              : grid.fontWidth * 18,
+              : grid.fontWidth * 20,
       height:
         grid.windowWidth >= queries.xxl
-          ? grid.fontHeight * 16
+          ? grid.fontHeight * 17
           : grid.windowWidth >= queries.xl
-            ? grid.fontHeight * 15
+            ? grid.fontHeight * 16
             : grid.windowWidth >= queries.md
               ? grid.fontHeight * 12
               : grid.fontHeight * 9,
