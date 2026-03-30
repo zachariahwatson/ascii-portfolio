@@ -82,7 +82,7 @@ _/   |_/_)(_)(_(_(__
             src="./portrait.png"
             className="absolute inset-0 w-[37ch] h-full object-cover pl-16"
           /> */}
-          <div className="flex-1 whitespace-pre-wrap pt-8 pl-4 break-keep">
+          <div className="flex-1 pt-8 pl-4 break-keep text-wrap">
             <p className="ascii-text">
               Zachariah "Zach" Watson is a web developer.
             </p>
@@ -97,7 +97,8 @@ _/   |_/_)(_)(_(_(__
             <br />
             <p className="ascii-text">
               Zachariah "Zach" Watson is{' '}
-              <span className="ascii-underline ascii-text">not</span>{' '}
+              <span className="ascii-underline ascii-text">not</span>
+              {'    '}
               subliminally reinforcing his name in your memory.
             </p>
             <div className="ascii-text whitespace-pre">
