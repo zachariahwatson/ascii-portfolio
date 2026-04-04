@@ -96,11 +96,11 @@ function generateRects(
               : grid.fontWidth * 20,
       height:
         grid.windowWidth >= queries.xxl
-          ? grid.fontHeight * 14
+          ? grid.fontHeight * 15
           : grid.windowWidth >= queries.xl
-            ? grid.fontHeight * 13
+            ? grid.fontHeight * 14
             : grid.windowWidth >= queries.md
-              ? grid.fontHeight * 11
+              ? grid.fontHeight * 12
               : grid.fontHeight * 8,
       x: 0,
       y: 0,
