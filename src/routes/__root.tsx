@@ -29,10 +29,10 @@ export const Route = createRootRoute({
         fontPath={`${import.meta.env.BASE_URL}CascadiaMono-VariableFont_wght.ttf`}
       >
         <ASCII>
-          <div className="min-h-full">
+          <div className="min-h-screen">
             <Outlet />
           </div>
-          <div className="-mt-[2ch]">
+          <div className="-mt-[3ch]">
             <Footer />
           </div>
         </ASCII>
