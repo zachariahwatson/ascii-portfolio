@@ -16,7 +16,7 @@ export default function Banner({
     <header>
       <div className="flex justify-center">
         <div
-          className="flex justify-center relative pt-4"
+          className="flex justify-center relative pt-2"
           style={{
             width:
               grid.windowWidth >= queries.xxl
@@ -38,7 +38,7 @@ export default function Banner({
           {children}
         </div>
       </div>
-      <div className="h-4 -mt-2 ascii-border-b ascii-b-_ ascii-no-fill overflow-hidden" />
+      <div className="h-4  ascii-border-b ascii-b-_ ascii-no-fill overflow-hidden" />
       <div className="h-4 ascii-border-b ascii-b-◡ ascii-no-fill overflow-hidden" />
     </header>
   )
