@@ -44,24 +44,20 @@ function generateRects(
     {
       width:
         grid.windowWidth >= queries.xxl
-          ? grid.fontWidth * 32
+          ? grid.fontWidth * 31.5
           : grid.windowWidth >= queries.xl
-            ? grid.fontWidth * 29
-            : grid.windowWidth >= queries.md
-              ? grid.fontWidth * 26.5
-              : grid.fontWidth * 16,
+            ? grid.fontWidth * 27
+            : grid.fontWidth * 22,
       height:
         grid.windowWidth >= queries.xxl
-          ? grid.fontHeight * 17
+          ? grid.fontHeight * 16
           : grid.windowWidth >= queries.xl
-            ? grid.fontHeight * 16
-            : grid.windowWidth >= queries.md
-              ? grid.fontHeight * 14
-              : grid.fontHeight * 9,
+            ? grid.fontHeight * 15
+            : grid.fontHeight * 11,
       x: 0,
       y: 0,
       zIndex: 10,
-      name: 'cv.pdf',
+      name: '▇▆ art',
     },
     {
       width:
@@ -88,20 +84,24 @@ function generateRects(
     {
       width:
         grid.windowWidth >= queries.xxl
-          ? grid.fontWidth * 31.5
+          ? grid.fontWidth * 32
           : grid.windowWidth >= queries.xl
-            ? grid.fontWidth * 27
-            : grid.fontWidth * 22,
+            ? grid.fontWidth * 29
+            : grid.windowWidth >= queries.md
+              ? grid.fontWidth * 26.5
+              : grid.fontWidth * 16,
       height:
         grid.windowWidth >= queries.xxl
-          ? grid.fontHeight * 16
+          ? grid.fontHeight * 17
           : grid.windowWidth >= queries.xl
-            ? grid.fontHeight * 15
-            : grid.fontHeight * 11,
+            ? grid.fontHeight * 16
+            : grid.windowWidth >= queries.md
+              ? grid.fontHeight * 14
+              : grid.fontHeight * 9,
       x: 0,
       y: 0,
       zIndex: 10,
-      name: '▇▆ art',
+      name: 'cv.pdf',
     },
     {
       width:
@@ -311,60 +311,47 @@ function App() {
 
   const cardData = [
     {
-      name: 'cv',
-      to: '/',
+      name: '▇▆ art',
+      to: 'https://zchwtsn.com',
       content:
         grid.windowWidth >= queries.xxl
           ? String.raw`
-   ______________________
- / \        __  _    _   \
-|   |      /  )' )  /    |
- \_ |     /     (  /     |
-    |    (__/    \/      |
-    |                    |
-    | ########           |
-    |  . ~~~~~~~~~~~~~~~ |
-    |  . ~~~~~~~         |
-    | ###### ####        |
-    |  . ~~~~~~~~~~~     |
-    |  __________________|__
-    \_/____________________/
+┌──────────────────────────┐
+│            o\            │
+│   ________/__\________   │
+│  |     ."_____) ---(  |  │
+│ ,'-.              .'"-|  │
+│(____".        ._ '   ||  │
+│  |   _      _/  \   _-|  │
+│  |__/_\.___/_____\_/  |  │
+│  | '  , /|\   .  ,  ^ |  │
+│  |_____/_|_\__________|  │
+└──────────────────────────┘
+   zchwtsn.txt - Shortcut
 `
           : grid.windowWidth >= queries.xl
             ? String.raw`
-   ____________________
- / \       __  _    _  \
-|   |     /  )' )  /   |
- \_ |    /     (  /    |
-    |   (__/    \/     |
-    |                  |
-    | ########         |
-    |  . ~~~~~~~~~~~~  |
-    |  . ~~~~~~~       |
-    | ###### ####      |
-    |  ________________|__
-    \_/__________________/
+┌──────────────────────┐
+│          o\          │
+│  _______/__\_______  │
+│ |__    "--'    --(_| │
+│(___".       _  .' || │
+│ |   _     _/ \   _-| │
+│ |__/_\___/____\_/  | │
+│ | '  , /|\  . ,  ^ | │
+│ |_____/_|_\________| │
+└──────────────────────┘
+ zchwtsn.txt - Shortcut
 `
-            : grid.windowWidth >= queries.md
-              ? String.raw`
-   _________________
- / \     __  _    _ \
-|   |   /  )' )  /  |
- \_ |  /     (  /   |
-    | (__/    \/    |
-    |               |
-    | ########      |
-    |  . ~~~~~~~~~~ |
-    |  _____________|__
-    \_/_______________/
-`
-              : String.raw`
- __________
-/\  _. , _ \
-\| (__ \/  |
- | . ~~~~~ |
- | ________|_
- \/_________/
+            : String.raw`
+┌─────────────────┐
+│  _____/"\_____  │
+│ |_   "-'   -(_| │
+│(__".    _. ' '| │
+│ |_,-___/__\_-.| │
+│ |____/|\______| │
+└─────────────────┘
+   zchwtsn.txt ↲
 `,
     },
     {
@@ -419,47 +406,60 @@ _.-'v'-._
 `,
     },
     {
-      name: '▇▆ art',
-      to: '/',
+      name: 'cv',
+      to: 'ZachariahWatsonResume.pdf',
       content:
         grid.windowWidth >= queries.xxl
           ? String.raw`
-┌──────────────────────────┐
-│            o\            │
-│   ________/__\________   │
-│  |     ."_____) ---(  |  │
-│ ,'-.              .'"-|  │
-│(____".        ._ '   ||  │
-│  |   _      _/  \   _-|  │
-│  |__/_\.___/_____\_/  |  │
-│  | '  , /|\   .  ,  ^ |  │
-│  |_____/_|_\__________|  │
-└──────────────────────────┘
-   zchwtsn.txt - Shortcut
+   ______________________
+ / \        __  _    _   \
+|   |      /  )' )  /    |
+ \_ |     /     (  /     |
+    |    (__/    \/      |
+    |                    |
+    | ########           |
+    |  . ~~~~~~~~~~~~~~~ |
+    |  . ~~~~~~~         |
+    | ###### ####        |
+    |  . ~~~~~~~~~~~     |
+    |  __________________|__
+    \_/____________________/
 `
           : grid.windowWidth >= queries.xl
             ? String.raw`
-┌──────────────────────┐
-│          o\          │
-│  _______/__\_______  │
-│ |__    "--'    --(_| │
-│(___".       _  .' || │
-│ |   _     _/ \   _-| │
-│ |__/_\___/____\_/  | │
-│ | '  , /|\  . ,  ^ | │
-│ |_____/_|_\________| │
-└──────────────────────┘
- zchwtsn.txt - Shortcut
+   ____________________
+ / \       __  _    _  \
+|   |     /  )' )  /   |
+ \_ |    /     (  /    |
+    |   (__/    \/     |
+    |                  |
+    | ########         |
+    |  . ~~~~~~~~~~~~  |
+    |  . ~~~~~~~       |
+    | ###### ####      |
+    |  ________________|__
+    \_/__________________/
 `
-            : String.raw`
-┌─────────────────┐
-│  _____/"\_____  │
-│ |_   "-'   -(_| │
-│(__".    _. ' '| │
-│ |_,-___/__\_-.| │
-│ |____/|\______| │
-└─────────────────┘
-   zchwtsn.txt ↲
+            : grid.windowWidth >= queries.md
+              ? String.raw`
+   _________________
+ / \     __  _    _ \
+|   |   /  )' )  /  |
+ \_ |  /     (  /   |
+    | (__/    \/    |
+    |               |
+    | ########      |
+    |  . ~~~~~~~~~~ |
+    |  _____________|__
+    \_/_______________/
+`
+              : String.raw`
+ __________
+/\  _. , _ \
+\| (__ \/  |
+ | . ~~~~~ |
+ | ________|_
+ \/_________/
 `,
     },
     {
