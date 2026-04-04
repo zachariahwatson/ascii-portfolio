@@ -13,7 +13,7 @@ function RouteComponent() {
   const queries = useGridMediaQueries(grid)
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col">
       <Banner back>
         <div className="whitespace-pre ascii-text ascii-no-fill">
           {grid.windowWidth >= queries.lg
