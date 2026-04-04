@@ -61,7 +61,7 @@ function generateRects(
       x: 0,
       y: 0,
       zIndex: 10,
-      name: 'cv.txt',
+      name: 'cv.pdf',
     },
     {
       width:
@@ -88,24 +88,20 @@ function generateRects(
     {
       width:
         grid.windowWidth >= queries.xxl
-          ? grid.fontWidth * 31
+          ? grid.fontWidth * 31.5
           : grid.windowWidth >= queries.xl
-            ? grid.fontWidth * 28
-            : grid.windowWidth >= queries.md
-              ? grid.fontWidth * 25
-              : grid.fontWidth * 20,
+            ? grid.fontWidth * 27
+            : grid.fontWidth * 22,
       height:
         grid.windowWidth >= queries.xxl
-          ? grid.fontHeight * 15
+          ? grid.fontHeight * 16
           : grid.windowWidth >= queries.xl
-            ? grid.fontHeight * 14
-            : grid.windowWidth >= queries.md
-              ? grid.fontHeight * 12
-              : grid.fontHeight * 8,
+            ? grid.fontHeight * 15
+            : grid.fontHeight * 11,
       x: 0,
       y: 0,
       zIndex: 10,
-      name: 'art.txt',
+      name: '▇▆ art',
     },
     {
       width:
@@ -423,51 +419,47 @@ _.-'v'-._
 `,
     },
     {
-      name: 'art',
+      name: '▇▆ art',
       to: '/',
       content:
         grid.windowWidth >= queries.xxl
           ? String.raw`
-             o\
-   _________/__\_________
-  |       ."_____) ---(  |
- ,'-._               .'"-|
-(_____".            '   ||
-  |            _.-.      |
-  |   _      _/ /  \   _-|
-  |__/_\-___/_______\_/  |
-  | '  , /|\ ^   .  ,  ^ |
-  |_____/_|_\____________|
+┌──────────────────────────┐
+│            o\            │
+│   ________/__\________   │
+│  |     ."_____) ---(  |  │
+│ ,'-.              .'"-|  │
+│(____".        ._ '   ||  │
+│  |   _      _/  \   _-|  │
+│  |__/_\.___/_____\_/  |  │
+│  | '  , /|\   .  ,  ^ |  │
+│  |_____/_|_\__________|  │
+└──────────────────────────┘
+   zchwtsn.txt - Shortcut
 `
           : grid.windowWidth >= queries.xl
             ? String.raw`
-            o\
-   ________/__\________
-  |     ."_____) ---(  |
- ,'-.              .'"-|
-(____".        ._ '   ||
-  |   _      _/  \   _-|
-  |__/_\.___/_____\_/  |
-  | '  , /|\   .  ,  ^ |
-  |_____/_|_\__________|
+┌──────────────────────┐
+│          o\          │
+│  _______/__\_______  │
+│ |__    "--'    --(_| │
+│(___".       _  .' || │
+│ |   _     _/ \   _-| │
+│ |__/_\___/____\_/  | │
+│ | '  , /|\  . ,  ^ | │
+│ |_____/_|_\________| │
+└──────────────────────┘
+ zchwtsn.txt - Shortcut
 `
-            : grid.windowWidth >= queries.md
-              ? String.raw`
-          o\
-  _______/__\_______
- |__    "--'    --(_|
-(___".       _  .' ||
- |   _     _/ \   _-|
- |__/_\___/____\_/  |
- | '  , /|\  . ,  ^ |
- |_____/_|_\________|
-`
-              : String.raw`
-  _____/"\_____
- |_   "-'   -(_|
-(__".    _. ' '|
- |_,-___/__\_-.|
- |____/|\______|
+            : String.raw`
+┌─────────────────┐
+│  _____/"\_____  │
+│ |_   "-'   -(_| │
+│(__".    _. ' '| │
+│ |_,-___/__\_-.| │
+│ |____/|\______| │
+└─────────────────┘
+   zchwtsn.txt ↲
 `,
     },
     {
