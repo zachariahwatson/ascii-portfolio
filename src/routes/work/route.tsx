@@ -113,7 +113,7 @@ _|_ |_  o  _ ._   _.  _   _
             )}
           </WorkCard>
           <WorkCard
-            desc="Arcadia is a long-form generative art project hosted on Art Blocks that generated 256 unique digital art pieces from a single algorithm during a 30 minute Dutch formatted auction."
+            desc="Arcadia is a long-form generative art project hosted on Art Blocks that generated 256 unique digital art pieces from a single algorithm during a 30-minute Dutch formatted auction."
             tags="#p5js #webgl #glsl"
             website="https://www.artblocks.io/collection/arcadia-by-zachariah-watson"
             websiteLabel="artblocks.io"
