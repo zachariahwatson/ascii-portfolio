@@ -81,7 +81,7 @@ _/   |_/_)(_)(_(_(__
 `}
             <img
               src="./portrait.png"
-              className="absolute w-[34.5ch] h-full object-cover top-0 px-9 py-12 ml-[.5ch]"
+              className="absolute w-[34.5ch] h-full object-cover top-0 px-10 py-13 ml-[1ch]"
             />
           </div>
           {grid.windowWidth < 768 && (
