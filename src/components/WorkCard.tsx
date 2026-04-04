@@ -44,9 +44,9 @@ export default function WorkCard({
     <div className={`ascii ascii-parent md:aspect-3/2 relative ${className}`}>
       <div className="flex flex-col justify-start h-full relative">
         <div className="ascii-text ascii-no-fill">{children}</div>
-        <div className="px-4 pt-4 ascii-text ascii-no-fill flex-1">{desc}</div>
-        <div className="px-4 pt-4 ascii-text ascii-no-fill">{tags}</div>
-        <div className="flex justify-center md:space-x-10 space-x-8 justify-self-end pb-9 pt-4">
+        <div className="px-4 mt-4 ascii-text ascii-no-fill flex-1">{desc}</div>
+        <div className="px-4 mt-4 ascii-text ascii-no-fill">{tags}</div>
+        <div className="flex justify-center md:space-x-10 space-x-8 justify-self-end pb-9 mt-4">
           {website && (
             <ButtonLink
               href={website}
