@@ -40,12 +40,7 @@ function RouteComponent() {
         <div
           className="grid min-[1204px]:grid-cols-2 grid-cols-1 gap-8 place-content-center p-4 ascii-parent max-[1204px]:max-w-2xl max-md:max-w-xl break-keep"
           style={{
-            width:
-              grid.windowWidth >= queries.xxl
-                ? queries.xl
-                : grid.windowWidth >= 1204
-                  ? queries.lg
-                  : queries.md,
+            width: grid.windowWidth >= 1204 ? queries.lg : queries.md,
           }}
         >
           <WorkCard
