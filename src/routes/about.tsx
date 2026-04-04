@@ -44,7 +44,7 @@ _/   |_/_)(_)(_(_(__
       </Banner>
       <div className="flex justify-center items-center">
         <div
-          className="flex md:flex-row flex-col px-8 justify-center"
+          className="flex min-[900px]:flex-row flex-col px-8 justify-center"
           style={{
             width:
               grid.windowWidth >= queries.xxl
@@ -84,8 +84,8 @@ _/   |_/_)(_)(_(_(__
               className="absolute w-[34.5ch] h-full object-cover top-0 px-10 py-13 ml-[1ch]"
             />
           </div>
-          {grid.windowWidth < 768 && (
-            <div className="h-4 pt-4 ascii-border-b ascii-b-_ ascii-no-fill overflow-hidden" />
+          {grid.windowWidth < 900 && (
+            <div className="h-4 pt-6 ascii-border-b ascii-b-╌ ascii-no-fill overflow-hidden" />
           )}
           <div className="pt-6 md:pt-8 pl-4 break-keep text-wrap">
             <p className="ascii-text">
@@ -111,7 +111,7 @@ _/   |_/_)(_)(_(_(__
 ┏━╸┏━┓┏┓╻╺┳╸┏━┓┏━╸╺┳╸
 ┃  ┃ ┃┃┗┫ ┃ ┣━┫┃   ┃ 
 ┗━╸┗━┛╹ ╹ ╹ ╹ ╹┗━╸ ╹
----------------------
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 `}
             </div>
             <br />
