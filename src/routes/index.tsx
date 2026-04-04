@@ -47,7 +47,7 @@ function generateRects(
           ? grid.fontWidth * 31.5
           : grid.windowWidth >= queries.xl
             ? grid.fontWidth * 27
-            : grid.fontWidth * 22,
+            : grid.fontWidth * 22.5,
       height:
         grid.windowWidth >= queries.xxl
           ? grid.fontHeight * 16.5
@@ -67,7 +67,7 @@ function generateRects(
             ? grid.fontWidth * 21
             : grid.windowWidth >= queries.md
               ? grid.fontWidth * 18
-              : grid.fontWidth * 12,
+              : grid.fontWidth * 12.5,
       height:
         grid.windowWidth >= queries.xxl
           ? grid.fontHeight * 15
@@ -75,7 +75,7 @@ function generateRects(
             ? grid.fontHeight * 14
             : grid.windowWidth >= queries.md
               ? grid.fontHeight * 13
-              : grid.fontHeight * 8,
+              : grid.fontHeight * 8.5,
       x: 0,
       y: 0,
       zIndex: 10,
@@ -89,7 +89,7 @@ function generateRects(
             ? grid.fontWidth * 29
             : grid.windowWidth >= queries.md
               ? grid.fontWidth * 26.5
-              : grid.fontWidth * 16,
+              : grid.fontWidth * 16.5,
       height:
         grid.windowWidth >= queries.xxl
           ? grid.fontHeight * 17
@@ -111,7 +111,7 @@ function generateRects(
             ? grid.fontWidth * 30
             : grid.windowWidth >= queries.md
               ? grid.fontWidth * 23
-              : grid.fontWidth * 20,
+              : grid.fontWidth * 19.5,
       height:
         grid.windowWidth >= queries.xxl
           ? grid.fontHeight * 17
