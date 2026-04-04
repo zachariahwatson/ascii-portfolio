@@ -61,9 +61,15 @@ export default function LinkCard({
           </div>
         </strong>
         <div className="absolute whitespace-pre pl-6 top-12">
-          <Link className="ascii-text ascii-no-fill" to={to}>
-            {children}
-          </Link>
+          {to.startsWith('/') ? (
+            <Link className="ascii-text ascii-no-fill" to={to}>
+              {children}
+            </Link>
+          ) : (
+            <a className="ascii-text ascii-no-fill" href={to} target="_blank">
+              {children}
+            </a>
+          )}
         </div>
       </div>
     </Draggable>
