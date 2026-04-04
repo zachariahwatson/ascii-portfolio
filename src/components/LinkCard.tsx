@@ -53,7 +53,7 @@ export default function LinkCard({
         }}
       >
         <strong className="pointer-events-auto cursor-grab active:cursor-grabbing">
-          <div className="w-full h-12 ascii ascii-border-b whitespace-pre flex justify-end px-2 space-x-2">
+          <div className="w-full h-12 ascii ascii-border-b flex justify-end px-2 space-x-2">
             <div className="absolute left-6 top-8 ascii-text ascii-no-fill">
               {name}
             </div>

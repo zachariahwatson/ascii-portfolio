@@ -25,9 +25,7 @@ const ButtonLink = ({
       href={href}
       target="_blank"
     >
-      <p className="absolute ascii-text whitespace-pre ascii-underline">
-        {children}
-      </p>
+      <p className="absolute ascii-text ascii-underline">{children}</p>
     </a>
   )
 }
@@ -47,9 +45,7 @@ export default function WorkCard({
       <div className="flex flex-col justify-start h-full relative">
         <div className="ascii-text ascii-no-fill">{children}</div>
         <div className="px-4 pt-4 ascii-text ascii-no-fill flex-1">{desc}</div>
-        <div className="px-4 pt-4 ascii-text ascii-no-fill whitespace-pre-wrap">
-          {tags}
-        </div>
+        <div className="px-4 pt-4 ascii-text ascii-no-fill">{tags}</div>
         <div className="flex justify-center md:space-x-10 space-x-8 justify-self-end pb-9 pt-4">
           {website && (
             <ButtonLink

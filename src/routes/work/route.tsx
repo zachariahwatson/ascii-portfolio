@@ -59,7 +59,7 @@ function RouteComponent() {
               </div>
             ) : (
               <div className="flex justify-center items-center h-12 ascii">
-                <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
+                <div className="ascii-text ascii-no-fill pt-4">
                   html-to-ascii
                 </div>
               </div>
@@ -85,9 +85,7 @@ _|_ |_  o  _ ._   _.  _   _
               </div>
             ) : (
               <div className="flex justify-center items-center h-12 ascii-border-b">
-                <div className="whitespace-pre ascii-text ascii-no-fill pt-4">
-                  thispage
-                </div>
+                <div className="ascii-text ascii-no-fill pt-4">thispage</div>
               </div>
             )}
           </WorkCard>
@@ -108,7 +106,7 @@ _|_ |_  o  _ ._   _.  _   _
               </div>
             ) : (
               <div className="flex justify-center items-center h-12 ascii">
-                <div className="whitespace-pre ascii-text ascii-no-fill pt-8">
+                <div className="ascii-text ascii-no-fill pt-8">
                   FORMATIC FOBS
                 </div>
               </div>
@@ -133,9 +131,7 @@ _|_ |_  o  _ ._   _.  _   _
               </div>
             ) : (
               <div className="flex justify-center items-center h-12 ascii">
-                <div className="whitespace-pre ascii-text ascii-no-fill pt-8">
-                  Arcadia
-                </div>
+                <div className="ascii-text ascii-no-fill pt-8">Arcadia</div>
               </div>
             )}
           </WorkCard>
