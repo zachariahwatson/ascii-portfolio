@@ -29,8 +29,12 @@ export const Route = createRootRoute({
         fontPath={`${import.meta.env.BASE_URL}CascadiaMono-VariableFont_wght.ttf`}
       >
         <ASCII>
-          <Footer />
-          <Outlet />
+          <div className="min-h-full">
+            <Outlet />
+          </div>
+          <div className="-mt-[2ch]">
+            <Footer />
+          </div>
         </ASCII>
       </ASCIIProvider>
       <TanStackDevtools
