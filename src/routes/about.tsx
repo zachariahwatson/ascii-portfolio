@@ -44,7 +44,7 @@ _/   |_/_)(_)(_(_(__
       </Banner>
       <div className="flex justify-center items-center">
         <div
-          className="relative whitespace-pre ascii-text flex flex-row px-8"
+          className="whitespace-pre flex md:flex-row flex-col px-8 justify-center"
           style={{
             width:
               grid.windowWidth >= queries.xxl
@@ -54,35 +54,40 @@ _/   |_/_)(_)(_(_(__
                   : queries.md,
           }}
         >
-          {/* ASCII frame */}
-          {String.raw`
-   _______________________________
-  |\_____________________________/|
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||                             ||
-  ||_____________________________||
-  '/_____________________________\'
+          <div className="relative whitespace-pre ascii-text flex justify-center">
+            {/* ASCII frame */}
+            {String.raw`
+   ______________________________
+  |\____________________________/|
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||                            ||
+  ||____________________________||
+  '/____________________________\'
 `}
-          {/* <img
-            src="./portrait.png"
-            className="absolute inset-0 w-[37ch] h-full object-cover pl-16"
-          /> */}
-          <div className="flex-1 pt-8 pl-4 break-keep text-wrap">
+            <img
+              src="./portrait.png"
+              className="absolute w-[34.5ch] h-full object-cover top-0 px-9 py-12 ml-[.5ch]"
+            />
+          </div>
+          {grid.windowWidth < 768 && (
+            <div className="h-4 pt-4 ascii-border-b ascii-b-_ ascii-no-fill overflow-hidden" />
+          )}
+          <div className="pt-6 md:pt-8 pl-4 break-keep text-wrap">
             <p className="ascii-text">
               Zachariah "Zach" Watson is a web developer.
             </p>
@@ -110,12 +115,12 @@ _/   |_/_)(_)(_(_(__
 `}
             </div>
             <br />
-            <div className="flex flex-wrap space-x-8">
+            <div className="flex flex-wrap space-x-8 space-y-4 mb-8">
               <a
                 href="mailto:zachariahwatson@gmail.com"
                 className="ascii-text ascii-underline"
               >
-                email
+                watsonzachariah@gmail.com
               </a>
               <a
                 href="https://instagram.com/zchwtsn"
