@@ -81,11 +81,11 @@ _/   |_/_)(_)(_(_(__
 `}
             <img
               src="./portrait.png"
-              className="absolute w-[34.5ch] h-full object-cover top-0 px-10 py-13 ml-[1ch]"
+              className="absolute w-[34.5ch] h-full object-cover top-0 px-10 py-13 ml-[1ch] mt-[1ch]"
             />
           </div>
           {grid.windowWidth < 900 && (
-            <div className="h-4 pt-6 ascii-border-b ascii-b-╌ ascii-no-fill overflow-hidden" />
+            <div className="h-4 mt-6 ascii-border-b ascii-b-╌ ascii-no-fill overflow-hidden" />
           )}
           <div className="pt-6 md:pt-8 pl-4 break-keep text-wrap">
             <p className="ascii-text">
