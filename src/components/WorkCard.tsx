@@ -19,14 +19,20 @@ const ButtonLink = ({
   children: React.ReactNode
 }) => {
   return (
-    <a
-      className="h-12 ascii-border ascii-shadow-bl pl-2 flex justify-center items-center relative pt-4"
-      style={{ width: width }}
-      href={href}
-      target="_blank"
-    >
-      <p className="absolute ascii-text ascii-underline">{children}</p>
-    </a>
+    <div className="relative">
+      <a
+        className="h-14 absolute -top-[1ch]"
+        style={{ width: width }}
+        href={href}
+        target="_blank"
+      />
+      <div
+        className="h-12 ascii-border ascii-shadow-bl pl-2 flex justify-center items-center relative pt-4"
+        style={{ width: width }}
+      >
+        <p className="absolute ascii-text ascii-underline">{children}</p>
+      </div>
+    </div>
   )
 }
 
