@@ -52,22 +52,21 @@ export default function LinkCard({
           zIndex,
         }}
       >
-        <strong className="pointer-events-auto cursor-grab active:cursor-grabbing">
-          <div className="w-full h-12 ascii ascii-border-b flex justify-end px-2 space-x-2">
-            <div className="absolute left-6 top-8 ascii-text ascii-no-fill">
-              {name}
-            </div>
-            <div className="absolute top-8 ascii-text ascii-no-fill">- □ ×</div>
+        <strong className="pointer-events-auto cursor-grab active:cursor-grabbing absolute w-full h-14 -top-[1ch]"></strong>
+        <div className="w-full h-12 ascii ascii-border-b flex justify-end px-2 space-x-2">
+          <div className="absolute left-6 top-8 ascii-text ascii-no-fill">
+            {name}
           </div>
-        </strong>
-        <div className="absolute whitespace-pre pl-6 top-12">
+          <div className="absolute top-8 ascii-text ascii-no-fill">- □ ×</div>
+        </div>
+        <div className="absolute whitespace-pre top-12">
           {to.startsWith('/') ? (
-            <Link className="ascii-text ascii-no-fill" to={to}>
-              {children}
+            <Link to={to}>
+              <div className="pl-6 ascii-text ascii-no-fill">{children}</div>
             </Link>
           ) : (
-            <a className="ascii-text ascii-no-fill" href={to} target="_blank">
-              {children}
+            <a href={to} target="_blank">
+              <div className="pl-6 ascii-text ascii-no-fill">{children}</div>
             </a>
           )}
         </div>
