@@ -85,9 +85,9 @@ _/   |_/_)(_)(_(_(__
             />
           </div>
           {grid.windowWidth < 900 && (
-            <div className="h-4 mt-6 ascii-border-b ascii-b-╌ ascii-no-fill overflow-hidden" />
+            <div className="h-4 mt-8 ascii-border-b ascii-b-╌ ascii-no-fill overflow-hidden" />
           )}
-          <div className="pt-6 md:pt-10 pl-4 break-keep text-wrap">
+          <div className="mt-6 md:mt-10 pl-4 break-keep text-wrap">
             <p className="ascii-text">
               Zachariah "Zach" Watson is a web developer.
             </p>
