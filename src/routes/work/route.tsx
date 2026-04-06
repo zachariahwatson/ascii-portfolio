@@ -67,7 +67,7 @@ function RouteComponent() {
           </WorkCard>
           <WorkCard
             desc="thispage is a web app that helps book clubs synchronize their readings. It automatically increments reading goals once all members have reached them, features spoiler-protected discussions, and allows clubs to run polls to choose their next book."
-            tags="#nextjs #tanstackquery #supabase #rls #zod #resend"
+            tags="#nextjs #supabase #rls #tanstackquery #zod #resend"
             website="https://thispa.ge/"
             websiteLabel="thispa.ge"
             websiteWidth={132}
