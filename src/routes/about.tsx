@@ -44,7 +44,7 @@ _/   |_/_)(_)(_(_(__
       </Banner>
       <div className="flex justify-center items-center">
         <div
-          className="flex min-[900px]:flex-row flex-col px-8 justify-center"
+          className="flex px-8 justify-center"
           style={{
             width:
               grid.windowWidth >= queries.xxl
@@ -52,6 +52,7 @@ _/   |_/_)(_)(_(_(__
                 : grid.windowWidth >= 1080
                   ? queries.lg
                   : queries.md,
+            flexDirection: grid.windowWidth >= 900 ? 'row' : 'column',
           }}
         >
           <div className="relative whitespace-pre ascii-text flex justify-center">
