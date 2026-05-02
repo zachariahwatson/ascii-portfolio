@@ -106,7 +106,7 @@ _|_ |_  o  _ ._   _.  _   _
               </div>
             ) : (
               <div className="flex justify-center items-center h-12 ascii">
-                <div className="ascii-text ascii-no-fill pt-8">
+                <div className="ascii-text ascii-no-fill pt-10">
                   FORMATIC FOBS
                 </div>
               </div>
@@ -131,7 +131,7 @@ _|_ |_  o  _ ._   _.  _   _
               </div>
             ) : (
               <div className="flex justify-center items-center h-12 ascii">
-                <div className="ascii-text ascii-no-fill pt-8">Arcadia</div>
+                <div className="ascii-text ascii-no-fill pt-10">Arcadia</div>
               </div>
             )}
           </WorkCard>
